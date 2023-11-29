@@ -20,13 +20,17 @@ const modalStyles = {
   },
 };
 
-const SpotifyDataComponent = () => {
-  const { data, isLoading, isError } = useQuery('spotifyData', async () => {
-    const accessToken = await getAccessToken();
-    const topHitsPlaylistId = await getTopHitsPlaylistId(accessToken);
-    const tracksData = await getTopTracks(accessToken, topHitsPlaylistId);
+const fetchSpotifyData = async () => {
+  const accessToken = await getAccessToken();
+  const topHitsPlaylistId = await getTopHitsPlaylistId(accessToken);
+  const tracksData = await getTopTracks(accessToken, topHitsPlaylistId);
 
-    return tracksData;
+  return tracksData;
+};
+
+const SpotifyDataComponent = () => {
+  const { data, isLoading, isError } = useQuery('spotifyData', fetchSpotifyData, {
+    retry: 5,
   });
 
   const [selectedTrack, setSelectedTrack] = useState(null);

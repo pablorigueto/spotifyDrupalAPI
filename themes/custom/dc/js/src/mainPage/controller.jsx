@@ -6,13 +6,14 @@ export const getAccessToken = async () => {
 };
 
 export const getTopHitsPlaylistId = async (accessToken) => {
+
   const playlistResponse = await axios.get('https://api.spotify.com/v1/browse/featured-playlists', {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
     params: {
       country: 'US',
-      timestamp: new Date().toISOString(),
+      // timestamp: new Date().toISOString(),
     },
   });
 
