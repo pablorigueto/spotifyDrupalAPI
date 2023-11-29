@@ -49,7 +49,7 @@ class LastFMController extends ControllerBase {
    * @var string
    */
   const LASTFM_API_KEY = 'f344fe81f6ab8cc8adccb7f8c3d6f48b';
- 
+
   /**
    * Constructs a new SpotifyController object.
    *
@@ -86,12 +86,12 @@ class LastFMController extends ControllerBase {
         'track' => $trackName,
         'format' => 'json',
       ];
-  
+
       // Make a POST request to Last.fm API using Drupal HTTP client.
       $response = $this->httpClient->post(self::LASTFM_API_URL, [
         'form_params' => $params,
       ]);
-  
+
       // Check if the response status code is not successful.
       if ($response->getStatusCode() !== 200) {
         // Handle other non-successful status codes here.
@@ -125,7 +125,8 @@ class LastFMController extends ControllerBase {
       // Return JSON response with the first genre.
       return new JsonResponse(['genre' => $firstGenre]);
 
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
       $this->logger->error('Error fetching Last FM access token: @message', ['@message' => $e->getMessage()]);
       return new JsonResponse(['error' => 'Internal Server Error'], 500);
     }
