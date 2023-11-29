@@ -13,3 +13,11 @@ api_build.settings_form:
     _title: 'Spotify Integration Settings'
   requirements:
     _permission: 'administer site configuration'
+
+api_build.lastfm_api:
+  path: '/lastfm-api/{artistName}/{trackName}'
+  defaults:
+    _controller: '\Drupal\api_build\Controller\LastFMController::getGenreFromLastfmAPI'
+    _title: 'Last.fm API'
+  requirements:
+    _access: 'TRUE'
