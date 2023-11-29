@@ -1,7 +1,8 @@
 const fetchLastfmGenres = async (data, setLastfmGenres) => {
   if (data && data.items) {
     const genresPromises = data.items.map(async (track) => {
-    const lastFMURI = 'https://jobsity.lndo.site/lastfm-api/';
+    const baseUrl = window.location.href;
+    const lastFMURI = `${baseUrl}lastfm-api/`;
       try {
         const response = await fetch(`${lastFMURI}${encodeURIComponent(track.track.artists[0].name)}/${encodeURIComponent(track.track.name)}`);
         const data = await response.json();

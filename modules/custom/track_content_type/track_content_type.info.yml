@@ -1,7 +1,0 @@
-name: Track Content Type.
-type: module
-description: Create the content to storage the tracks.
-package: track_content_type
-core_version_requirement: ^10
-version: '1.0.0'
-project: 'custom'

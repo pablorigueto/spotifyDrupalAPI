@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 export const getAccessToken = async () => {
-  const tokenResponse = await axios.get('https://jobsity.lndo.site/api/getSpotifyAccessToken');
+  const baseUrl = window.location.href;
+  const tokenResponse = await axios.get(`${baseUrl}/api/getSpotifyAccessToken`);
   return tokenResponse.data.access_token;
 };
 
