@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { getAccessToken, getTopHitsPlaylistId, getTopTracks } from './controller';
 import fetchLastfmGenres from '../getGenre';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 const SpotifyDataComponent = () => {
   const { data, isLoading, isError } = useQuery('spotifyData', async () => {
@@ -22,6 +24,15 @@ const SpotifyDataComponent = () => {
     return <p>Loading...</p>;
   }
 
+  // Slick Carousel settings
+  const carouselSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
     <div>
       <h1>Hello there - world!</h1>
@@ -29,30 +40,20 @@ const SpotifyDataComponent = () => {
       {data && (
         <div>
           <h2>Top 20 Tracks</h2>
-          {data.items.map((track, index) => (
-            <div key={index}>
-              <p>{track.track.name}</p>
+          {/* Wrap your tracks in the Carousel component */}
+          <Carousel>
+            {data.items.map((track, index) => (
+              <div key={index}>
+                <p>{track.track.name}</p>
 
-              <img src={track.track.album.images[0].url} alt={track.track.name} />
+                <img src={track.track.album.images[0].url} alt={track.track.name} />
 
-              <div>Genre: {lastfmGenres[index] || 'N/A'}</div>
+                <div>Genre: {lastfmGenres[index] || 'N/A'}</div>
 
-              <div> Track ID: { track.track.id } </div>
-
-              <div> Added At: { track.added_at } </div>
-
-              <div> Album Type: { track.track.album.album_type } </div>
-
-              <div> Artists ID: { track.track.artists[0].id } </div>
-              <div> Artists Name: { track.track.artists[0].name } </div>
-
-              <div> Music ID: { track.track.id } </div>
-              <div> Music Name: { track.track.name } </div>
-              <div> Music Popularity: { track.track.popularity } </div>
-              <div> Music Number: { track.track.track_number } </div>
-
-            </div>
-          ))}
+                {/* Include other track information as needed */}
+              </div>
+            ))}
+          </Carousel>
         </div>
       )}
     </div>

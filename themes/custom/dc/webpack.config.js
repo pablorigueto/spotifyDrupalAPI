@@ -18,10 +18,19 @@ const config = {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
         exclude: /node_modules/,
         include: path.join(__dirname, 'js/src'),
-      }
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
 };
