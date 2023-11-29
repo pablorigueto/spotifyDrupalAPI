@@ -19,23 +19,32 @@ class SimpleOauthCommands extends DrushCommands {
    *
    * @var \Drupal\simple_oauth\Service\KeyGeneratorService
    */
-  private $keygen;
+  private KeyGeneratorService $keygen;
 
   /**
    * The file system.
    *
    * @var \Drupal\Core\File\FileSystemInterface
    */
-  private $fileSystem;
+  private FileSystemInterface $fileSystem;
 
   /**
    * SimpleOauthCommands constructor.
+   *
+   * @param \Drupal\simple_oauth\Service\KeyGeneratorService $keygen
+   *   The key generator service.
+   * @param \Drupal\Core\File\FileSystemInterface $file_system
+   *   The file handler.
    */
   public function __construct(KeyGeneratorService $keygen, FileSystemInterface $file_system) {
+    parent::__construct();
     $this->keygen = $keygen;
     $this->fileSystem = $file_system;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public static function create(ContainerInterface $container): self {
     return new static(
       $container->get('simple_oauth.key.generator'),
@@ -52,7 +61,7 @@ class SimpleOauthCommands extends DrushCommands {
    * @return bool
    *   TRUE if it's a directory. FALSE otherwise.
    */
-  private function isDirectory($uri) {
+  private function isDirectory(string $uri): bool {
     return @is_dir($uri);
   }
 
@@ -70,9 +79,12 @@ class SimpleOauthCommands extends DrushCommands {
    *
    * @validate-module-enabled simple_oauth
    */
-  public function generateKeys($keypath) {
+  public function generateKeys(string $keypath) {
     if (!$this->isDirectory($keypath)) {
-      $this->fileSystem->mkdir($keypath);
+      if (!$this->fileSystem->mkdir($keypath, NULL, TRUE) || !$this->isDirectory($keypath)) {
+        $this->logger()->error(sprintf('Directory at "%s" could not be created.', $keypath));
+        return;
+      }
     }
     $keys_path = $this->fileSystem->realpath($keypath);
 
@@ -83,10 +95,7 @@ class SimpleOauthCommands extends DrushCommands {
         ['path' => $keypath]
       );
     }
-    catch (FilesystemValidationException $e) {
-      $this->logger()->error($e->getMessage());
-    }
-    catch (ExtensionNotLoadedException $e) {
+    catch (FilesystemValidationException | ExtensionNotLoadedException $e) {
       $this->logger()->error($e->getMessage());
     }
   }
