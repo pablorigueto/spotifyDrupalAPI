@@ -12,10 +12,13 @@ const SpotifyDataComponent = () => {
     return tracksData;
   });
 
+  if (isLoading && !data) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div>
       <h1>Hello there - world!</h1>
-      {isLoading && <p>Loading...</p>}
       {isError && <p style={{ color: 'red' }}>Error fetching data. Please try again later.</p>}
       {data && (
         <div>
