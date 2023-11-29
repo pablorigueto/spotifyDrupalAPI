@@ -4,6 +4,21 @@ import { getAccessToken, getTopHitsPlaylistId, getTopTracks } from './controller
 import fetchLastfmGenres from '../getGenre';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import Modal from 'react-modal';
+
+// Define modal styles
+const modalStyles = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  content: {
+    width: '50%',
+    margin: 'auto',
+    backgroundColor: '#fff',
+    padding: '20px',
+    borderRadius: '8px',
+  },
+};
 
 const SpotifyDataComponent = () => {
   const { data, isLoading, isError } = useQuery('spotifyData', async () => {
@@ -13,6 +28,16 @@ const SpotifyDataComponent = () => {
 
     return tracksData;
   });
+
+  const [selectedTrack, setSelectedTrack] = useState(null);
+
+  const openModal = (track) => {
+    setSelectedTrack(track);
+  };
+
+  const closeModal = () => {
+    setSelectedTrack(null);
+  };
 
   const [lastfmGenres, setLastfmGenres] = useState([]);
 
@@ -40,13 +65,29 @@ const SpotifyDataComponent = () => {
                 <img src={track.track.album.images[0].url} alt={track.track.name} />
 
                 <div>Genre: {lastfmGenres[index] || 'N/A'}</div>
-
+                <button onClick={() => openModal(track)}>View Details</button>
                 {/* Include other track information as needed */}
               </div>
             ))}
           </Carousel>
         </div>
       )}
+
+      {/* Modal for displaying details */}
+      <Modal
+        isOpen={selectedTrack !== null}
+        onRequestClose={closeModal}
+        style={modalStyles}
+        contentLabel="Track Details"
+      >
+        {selectedTrack && (
+          <div>
+            <h2>{selectedTrack.track.name}</h2>
+            {/* Add other details here */}
+            <button onClick={closeModal}>Close</button>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };
