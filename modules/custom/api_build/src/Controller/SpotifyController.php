@@ -81,12 +81,11 @@ class SpotifyController extends ControllerBase {
 
       // Check if any entities were loaded.
       if (empty($entities)) {
-        return null;
+        return NULL;
       }
 
       // Check if any entities were loaded.
       if ($entity = reset($entities)) {
-        $label = $entity->label();
         $clientId = $entity->get('client_id');
         $clientSecret = $entity->get('client_secret');
       }
