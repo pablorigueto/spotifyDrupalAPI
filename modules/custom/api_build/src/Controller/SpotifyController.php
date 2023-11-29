@@ -102,7 +102,7 @@ class SpotifyController extends ControllerBase {
         ],
       ]);
 
-      // In the future (with PHP 8.3) this json_decode should be changed by json_validate.
+      // In the future (with PHP 8.3) this json_decode should be changed by json_validate which is more faster.
       $data = json_decode($response->getBody()->getContents(), TRUE);
 
       return new JsonResponse(['access_token' => $data['access_token']]);

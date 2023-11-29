@@ -4,4 +4,5 @@ global:
     theme:
       css/style.css: {}
   js:
-    js/dist/main.min.js: {}
+    js/dist_dev/main.min.js: {}
+
