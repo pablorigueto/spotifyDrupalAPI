@@ -1,0 +1,10 @@
+<?php
+
+/*
+ * dc page preprocess.
+ * Define variables for theme settings.
+ */
+function dc_preprocess_page(array &$variables) {
+  $variables;
+
+}

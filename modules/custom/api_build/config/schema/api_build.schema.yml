@@ -1,0 +1,16 @@
+api_build:
+  type: config_entity
+  label: 'Spotify credentials'
+  mapping:
+    id:
+      type: integer
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    client_id:
+      type: text
+      label: 'Client ID'
+    client_secret:
+      type: text
+      label: 'Client Secret'

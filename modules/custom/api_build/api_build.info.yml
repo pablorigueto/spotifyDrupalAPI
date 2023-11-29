@@ -1,0 +1,7 @@
+name: API Build
+type: module
+description: Provide a service that gets Spotify infos
+package: api_build
+core_version_requirement: ^10
+version: '1.0.0'
+project: 'custom'

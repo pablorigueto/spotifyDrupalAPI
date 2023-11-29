@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for the api_build module.
+ */
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_install().
+ */
+function api_build_install() {
+  _api_build_create_spotify_credentials_table();
+}
+
+/**
+ * Creates the spotify_credentials table.
+ */
+function _api_build_create_spotify_credentials_table() {
+  $schema = Database::getConnection()->schema();
+  $table_name = 'spotify_credentials';
+  if (!$schema->tableExists($table_name)) {
+    $schema->createTable($table_name, [
+      'fields' => [
+        'id' => ['type' => 'serial', 'not null' => TRUE],
+        'label' => ['type' => 'varchar', 'length' => 255, 'not null' => TRUE],
+        'client_id' => ['type' => 'varchar', 'length' => 255, 'not null' => TRUE],
+        'client_secret' => ['type' => 'varchar', 'length' => 255, 'not null' => TRUE],
+      ],
+      'primary key' => ['id'],
+    ]);
+  }
+}
