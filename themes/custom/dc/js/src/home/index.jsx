@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
-//import SpotifyDataComponent from './nodeCreation';
+import SpotifyCarousel from './carousel';
 
 const queryClient = new QueryClient();
 
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <p>Only test</p>
-
+      <SpotifyCarousel/>
     </QueryClientProvider>
   );
 };

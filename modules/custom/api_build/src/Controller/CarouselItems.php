@@ -63,6 +63,7 @@ class CarouselItems extends ControllerBase {
       // Loop through nodes and extract desired fields.
       foreach ($nodes as $node) {
         $spotifyData[] = [
+          'node_id' => $node->id(),
           'title' => $node->getTitle(),
           'track_added_at' => $node->get('track_added_at')->value,
           'track_album_image_url' => $node->get('track_album_image_url')->value,
