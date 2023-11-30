@@ -1,4 +1,3 @@
-// SpotifyCarousel.jsx
 import React, { useEffect, useState } from 'react';
 import useSpotifyData from '../../getNodes';
 import { getAccessToken, getArtistDetails } from './controller';
@@ -8,23 +7,25 @@ const SpotifyCarousel = () => {
   const [artistsData, setArtistsData] = useState([]);
   const [error, setError] = useState(null);
 
-
   useEffect(() => {
     let isMounted = true;
-  
+
     const fetchArtists = async () => {
       try {
         if (!tracks || tracks.length === 0) {
           return;
         }
-  
+
         const accessToken = await getAccessToken();
-  
+
         const artistsPromises = tracks.map((track) => {
           return getArtistDetails(accessToken, track.track_artist_id);
         });
-  
+
         const artistsData = await Promise.all(artistsPromises);
+
+        // Sorting artistsData by artist name in ascending order
+        artistsData.sort((a, b) => a.name.localeCompare(b.name));
 
         if (isMounted) {
           setArtistsData(artistsData);
@@ -35,13 +36,13 @@ const SpotifyCarousel = () => {
         }
       }
     };
-  
+
     fetchArtists();
-  
+
     return () => {
       isMounted = false;
     };
-  
+
   }, [tracks]);
 
   if (isLoading) {
@@ -64,35 +65,33 @@ const SpotifyCarousel = () => {
       {artistsData.map((artist, index) => (
         <div key={index}>
           <div>
-          <img src={artist.images[0].url} alt={`Artist name ${artist.name}`} />
+            <img src={artist.images[0].url} alt={`Artist name ${artist.name}`} />
           </div>
 
           <h2>{artist.name}</h2>
-          
-          <div className='details'>
 
+          <div className='details'>
             <div>
               <h4>Genre: </h4>
             </div>
             <div>
               {artist.genres[0]}
             </div>
- 
+
             <div>
-            <h4>Followers: </h4>
+              <h4>Followers: </h4>
             </div>
             <div>
               {artist.followers.total}
             </div>
- 
+
             <div>
-            <h4>Popularity: </h4>
+              <h4>Popularity: </h4>
             </div>
             <div>
               {artist.popularity}
             </div>
           </div>
-
         </div>
       ))}
     </>
