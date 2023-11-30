@@ -155,7 +155,7 @@ function _spotify_content_type() {
       'entity_type' => $entity_type,
       'type' => $field['type'],
       'required' => $field['required'],
-      'status' => $field['status'],
+      'status' => TRUE,
       'settings' => $field['settings'] ?? [],
       'cardinality' => $field['cardinality'] ?? 1,
       'translatable' => $field['translatable'] ?? TRUE,
@@ -168,11 +168,12 @@ function _spotify_content_type() {
       'bundle' => $bundle,
       'label' => $field['label'],
       'required' => $field['required'],
-      'status' => $field['status'],
+      'status' => TRUE,
       'settings' => $field['settings'] ?? [],
       'cardinality' => $field['cardinality'] ?? 1,
       'translatable' => $field['translatable'] ?? TRUE,
     ]);
     $field_config->save();
+
   }
 }

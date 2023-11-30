@@ -75,7 +75,7 @@ class SpotifyDataController extends ControllerBase {
           'track_artist_id' => $trackData['artist_id'],
           'track_artist_name' => $trackData['artist_name'],
           'track_id' => $trackData['track_id'],
-          'track_main_genre' => $trackData['track_main_genre'],
+          'track_main_genre' => $trackData['genre'],
           'track_name' => $trackData['track_name'],
           'track_number' => $trackData['track_number'],
           'track_popularity' => $trackData['popularity'],

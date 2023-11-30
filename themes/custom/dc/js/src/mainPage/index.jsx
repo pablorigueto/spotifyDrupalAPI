@@ -22,6 +22,13 @@ const SpotifyDataComponent = () => {
     fetchLastfmGenres(data, setLastfmGenres);
   }, [data]);
 
+  useEffect(() => {
+    // This effect will run when data is loaded, including the lastfmGenres.
+    if (!isLoading && data && data.items) {
+      handleSendDataToDrupal();
+    }
+  }, [lastfmGenres]);
+
   const sendSpotifyDataToDrupal = async (spotifyData) => {
     try {
       const baseUrl = window.location.origin;
@@ -34,14 +41,25 @@ const SpotifyDataComponent = () => {
         },
         body: JSON.stringify({ data: spotifyData }),
       });
-  
+
       if (response.ok) {
         console.log('Spotify data sent successfully');
+        // Reload the page on success
+        window.location.reload();
       }
       else {
-        console.error('Failed to send Spotify data to Drupal. Status:', response.status);
-        const errorMessage = await response.text();
-        console.error('Error message:', errorMessage);
+        const errorResponse = await response.json();
+        if (errorResponse && errorResponse.error) {
+          // Check for a specific error message
+          if (errorResponse.error === 'Cannot save more than 20 Spotify nodes.') {
+            // Handle the specific error here, for example, display a message to the user.
+            console.log('The Top 20 list of Spotify its ok, enjoy!');
+          } else {
+            console.error('Unexpected error:', errorResponse.error);
+          }
+        } else {
+          console.error('Unexpected error format:', errorResponse);
+        }
       }
     } catch (error) {
       console.error('Error sending Spotify data:', error.message);
@@ -60,9 +78,10 @@ const SpotifyDataComponent = () => {
         artist_name: track.track.artists[0].name,
         popularity: track.track.popularity,
         track_number: track.track.track_number,
+        genre: lastfmGenres[data.items.indexOf(track)] || 'N/A',
       }));
-  
-      // Call the function to send data to Drupal
+
+      // Call the function to send data to Drupal.
       sendSpotifyDataToDrupal(formattedData);
     }
   };
@@ -74,7 +93,7 @@ const SpotifyDataComponent = () => {
   return (
     <div>
       <h1>Hello there - world!</h1>
-      {isError && <p style={{ color: 'red' }}>Error fetching data. Please try again later.</p>}
+      {/* {isError && <p style={{ color: 'red' }}>Error fetching data. Please try again later.</p>}
       {data && (
         <div>
           <h2>Top 20 Tracks</h2>
@@ -85,9 +104,8 @@ const SpotifyDataComponent = () => {
               <div>Genre: {lastfmGenres[index] || 'N/A'}</div>
             </div>
           ))}
-          <button onClick={handleSendDataToDrupal}>Send Data to Drupal</button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
