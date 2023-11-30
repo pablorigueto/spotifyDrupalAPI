@@ -2,7 +2,7 @@
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import useSpotifyData from './controller';
+import useSpotifyData from '../../getNodes';
 
 const SpotifyCarousel = () => {
   const { data, isLoading, error } = useSpotifyData();
@@ -18,7 +18,7 @@ const SpotifyCarousel = () => {
   return (
     <>
       <div className="home__title">
-        <h1>Top 20 Songs of Spotify</h1>
+        <h1>Top Songs of Spotify</h1>
       </div>
       <Carousel>
         {data.map((track, index) => (

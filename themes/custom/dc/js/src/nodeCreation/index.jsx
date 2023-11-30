@@ -60,9 +60,7 @@ const SpotifyDataComponent = () => {
         const errorResponse = await response.json();
         if (errorResponse && errorResponse.error) {
           // Check for a specific error message
-          if (errorResponse.error === 'Cannot save more than 20 Spotify nodes.') {
-            // Handle the specific error here, for example, display a message to the user.
-            console.log('The Top 20 list of Spotify its ok, enjoy!');
+          if (errorResponse.error === 'Cannot save more than 50 Spotify nodes.') {
             window.location.href = 'home';
           }
           else {

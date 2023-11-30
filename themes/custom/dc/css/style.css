@@ -3,6 +3,10 @@
   --white-color: #fff;
 }
 
+body {
+  margin: 0 auto;
+}
+
 #block-dc-powered,
 #block-dc-syndicate,
 #block-dc-site-branding,
@@ -68,7 +72,7 @@
 }
 
 .homepage .carousel .slide .legend {
-  bottom: 55px;
+ 
   opacity: 1;
   font-size: 14px;
   background: var(--white-color);
@@ -77,9 +81,6 @@
 }
 
 .homepage .carousel .slide .legend:hover {
-  bottom: 55px;
-  opacity: 1;
-  font-size: 14px;
   background: var(--dark-color);
   color: var(--white-color);
 }
@@ -92,4 +93,70 @@
   border-radius: 1rem 1rem 0 0;
 }
 
+
+/* Style to detailed page - Node */
+
+.page-node-type-spotify #block-dc-content {
+  max-width: 640px; /* image max size */
+  margin: 0 auto;
+}
+
+.spotify-full-content,
+.spotify-full-content div{
+  width: 100%;
+}
+
+.page-node-type-spotify .info {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem
+}
+
+.page-node-type-spotify .info,
+.page-node-type-spotify .spotify__info {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.page-node-type-spotify .title,
+.page-node-type-spotify .spotify__info {
+  box-shadow: 0.1rem 0 0.5rem var(--dark-color);
+  border-radius: 0.3rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform ease 0.2s;
+}
+
+.page-node-type-spotify .title:hover,
+.page-node-type-spotify .spotify__info:hover {
+  transition: transform ease 0.2s;
+  transform: scale(1.03);
+}
+
+.page-node-type-spotify .spotify__info {
+  text-transform: capitalize;
+}
+
+.spotify-full-content .info:last-child {
+  padding-bottom: 10rem;
+}
+
+.spotify-full-content img {
+  border-radius: 0.5rem;
+  box-shadow: 0.1rem 0 0.5rem var(--dark-color);
+}
+
+#block-dc-page-title {
+  text-align: center;
+}
+
+.page-node-type-spotify #block-dc-breadcrumbs {
+  display: none;
+}
+
+
+.path-home .carousel .control-dots,
+.path-home .carousel-status {
+  display: none;
+}
 

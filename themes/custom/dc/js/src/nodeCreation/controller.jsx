@@ -14,7 +14,6 @@ export const getTopHitsPlaylistId = async (accessToken) => {
     },
     params: {
       country: 'US',
-      // timestamp: new Date().toISOString(),
     },
   });
 
@@ -36,7 +35,7 @@ export const getTopTracks = async (accessToken, playlistId) => {
       Authorization: `Bearer ${accessToken}`,
     },
     params: {
-      limit: 20,
+      limit: 50,
     },
   });
 

@@ -58,8 +58,8 @@ class SpotifyDataController extends ControllerBase {
       $count = $query->count()->execute();
 
       // Check if the count is less than 20.
-      if ($count >= 20) {
-        return new JsonResponse(['error' => 'Cannot save more than 20 Spotify nodes.'], 400);
+      if ($count >= 50) {
+        return new JsonResponse(['error' => 'Cannot save more than 50 Spotify nodes.'], 400);
       }
 
       $data = json_decode($request->getContent(), TRUE);

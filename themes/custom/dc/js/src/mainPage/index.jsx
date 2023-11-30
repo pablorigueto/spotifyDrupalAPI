@@ -20,7 +20,6 @@ const SpotifyCarouselComponent = () => {
     <Carousel>
       {carouselItems.map((item, index) => (
         <div key={index}>
-          {/* Customize your carousel item here */}
           <img src={item.imageUrl} alt={`Carousel Item ${index + 1}`} />
           <p className="legend">{item.title}</p>
           <p>{item.description}</p>

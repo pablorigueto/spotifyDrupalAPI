@@ -7,13 +7,66 @@
   {% endif %}
   {{ title_suffix }}
 
-  <div class="spotify-teaser-content">
+  <div class="spotify-full-content">
   {% if content.track_album_image_url %}
     {# Assuming track_album_image_url is a URL field #}
     {% set imageUrl = content.track_album_image_url['#items'].0.value %}
 
     <img src="{{ imageUrl }}" alt="{{ content.track_album_type }}">
-    {{ content }}
+
+    <div class="info">
+      <div class="title">
+        {{ 'Song'|t }}
+      </div>
+      <div class="spotify__info">
+        {{ content.track_name['#items'].0.value }}
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="title">
+        {{ 'Artist'|t }}
+      </div>
+      <div class="spotify__info">
+        {{ content.track_artist_name['#items'].0.value }}
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="title">
+        {{ 'Album type'|t }}
+      </div>
+      <div class="spotify__info">
+        {{ content.track_album_type['#items'].0.value }}
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="title">
+        {{ 'Genre'|t }}
+      </div>
+      <div class="spotify__info">
+        {{ content.track_main_genre['#items'].0.value }}
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="title">
+        {{ 'Position'|t }}
+      </div>
+      <div class="spotify__info">
+        {{ content.track_number['#items'].0.value }}
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="title">
+        {{ 'Popularity'|t }}
+      </div>
+      <div class="spotify__info">
+        {{ content.track_popularity['#items'].0.value }}
+      </div>
+    </div>
 
   {% endif %}
   </div>

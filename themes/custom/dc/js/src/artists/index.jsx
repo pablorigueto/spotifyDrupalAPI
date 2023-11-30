@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
-//import SpotifyDataComponent from './nodeCreation';
+import Top50Artists from './api';
 
 const queryClient = new QueryClient();
 
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <p>artistspage Only test</p>
-
+      <Top50Artists/>
     </QueryClientProvider>
   );
 };

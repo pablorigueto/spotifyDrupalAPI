@@ -60,7 +60,7 @@ function _spotify_content_type() {
     $content_type = NodeType::create([
       'type' => $bundle,
       'name' => t('Spotify Node'),
-      'description' => t('Storage Spotify top 20 songs'),
+      'description' => t('Storage Spotify top songs'),
     ]);
     $content_type->save();
   }

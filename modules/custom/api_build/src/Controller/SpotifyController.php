@@ -109,6 +109,7 @@ class SpotifyController extends ControllerBase {
       $response = $this->httpClient->post(self::SPOTIFY_API_URL, [
         'form_params' => [
           'grant_type' => 'client_credentials',
+          'scope' => 'user-top-read',
         ],
         'headers' => [
           'Content-Type' => 'application/x-www-form-urlencoded',

@@ -5,8 +5,6 @@ namespace Drupal\api_build\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Drupal\node\Entity\Node;
-use Symfony\Component\HttpFoundation\Request;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
