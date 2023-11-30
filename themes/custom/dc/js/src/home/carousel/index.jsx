@@ -16,18 +16,23 @@ const SpotifyCarousel = () => {
   }
 
   return (
-    <Carousel>
-      {data.map((track, index) => (
-        <div key={index}>
-          <img alt={`Slide ${index + 1}`} src={track.track_album_image_url} />
-          <a href={`/node/${track.node_id}`}>
-            <p className="legend">
-              View more: {track.track_name} - {track.track_artist_name}
-            </p>
-          </a>
-        </div>
-      ))}
-    </Carousel>
+    <>
+      <div className="home__title">
+        <h1>Top 20 Songs of Spotify</h1>
+      </div>
+      <Carousel>
+        {data.map((track, index) => (
+          <div key={index}>
+            <img alt={`Slide ${index + 1}`} src={track.track_album_image_url} />
+            <a href={`/node/${track.node_id}`}>
+              <p className="legend">
+                View more: {track.track_name} - {track.track_artist_name}
+              </p>
+            </a>
+          </div>
+        ))}
+      </Carousel>
+    </>
   );
 };
 

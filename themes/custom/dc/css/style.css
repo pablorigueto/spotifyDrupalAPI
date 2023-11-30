@@ -1,3 +1,6 @@
+:root {
+  --breadcrumb-link-hover-color: #000; /* Set your desired hover color */
+}
 
 #block-dc-powered,
 #block-dc-syndicate,
@@ -9,3 +12,49 @@
   display: none;
 }
 
+.path-home .homepage {
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 1171px) {
+  .path-home .homepage {
+    max-width: 35%;
+  }
+}
+
+@media screen and (min-width: 568px) and (max-width: 768px) {
+  .path-home .homepage {
+    max-width: 80%;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 567px) {
+  .path-home .homepage {
+    max-width: 95%;
+  }
+}
+
+.path-home .home__title {
+  text-align: center;
+}
+
+#block-dc-breadcrumbs ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#block-dc-breadcrumbs ol li {
+  display: inline;
+  margin-right: 10px;
+}
+
+#block-dc-breadcrumbs ol li a {
+  font-size: 18px;
+  text-decoration: unset;
+}
+
+#block-dc-breadcrumbs ol li a:hover {
+  color: var(--breadcrumb-link-hover-color);
+}
