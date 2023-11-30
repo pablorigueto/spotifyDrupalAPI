@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query';
+import axios from 'axios';
 
 const fetchCarouselItems = async () => {
   const baseUrl = window.location.href;

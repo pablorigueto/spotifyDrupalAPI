@@ -39,3 +39,11 @@ api_build.send_data:
     - POST
   requirements:
     _access: 'TRUE'
+
+api_build.home:
+  path: '/home'
+  defaults:
+    _controller: '\Drupal\api_build\Controller\HomePage::homePage'
+    _title: 'Homepage'
+  requirements:
+    _permission: 'access content'

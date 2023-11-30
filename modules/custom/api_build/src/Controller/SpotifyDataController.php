@@ -62,7 +62,7 @@ class SpotifyDataController extends ControllerBase {
         return new JsonResponse(['error' => 'Cannot save more than 20 Spotify nodes.'], 400);
       }
 
-      $data = json_decode($request->getContent(), true);
+      $data = json_decode($request->getContent(), TRUE);
 
       foreach ($data['data'] as $trackData) {
         // Create a new node of type 'spotify'.

@@ -52,7 +52,8 @@ const SpotifyDataComponent = () => {
       if (response.ok) {
         console.log('Spotify data sent successfully');
         // Reload the page on success to avoid more complexity with Cron and etc.
-        window.location.reload();
+        //window.location.reload();
+        window.location.href = 'home';
       }
       else {
         // Help to debug.
@@ -62,6 +63,7 @@ const SpotifyDataComponent = () => {
           if (errorResponse.error === 'Cannot save more than 20 Spotify nodes.') {
             // Handle the specific error here, for example, display a message to the user.
             console.log('The Top 20 list of Spotify its ok, enjoy!');
+            window.location.href = 'home';
           }
           else {
             console.error('Unexpected error:', errorResponse.error);
@@ -96,14 +98,14 @@ const SpotifyDataComponent = () => {
     }
   };
 
-  if (isLoading && !data && currentPath === '/') {
-    return <p>Getting data from Spotify API...</p>;
-  }
+  // if (isLoading && !data && currentPath === '/') {
+  //   return <p>Getting data from Spotify API...</p>;
+  // }
 
   return (
     <>
       {currentPath === '/' ? (
-        <p className='hasTimeToLottieOrNot' style={{ height: '18px' }}></p>
+        <p>Getting data from Spotify API...</p>
       ) : null}
    </>
   );

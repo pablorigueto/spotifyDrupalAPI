@@ -1,3 +1,5 @@
+{# page.html.twig #}
+
 <!DOCTYPE html>
 <html{{ html_attributes }}>
 <head>
@@ -8,7 +10,7 @@
   {{ page.library }}
   {{ page.js }}
 </head>
-<body{{ attributes.addClass(body_classes).addClass(is_front ? 'front-page' : '') }}>
+<body{{ attributes.addClass(body_classes) }}>
   {{ page }}
   {{ page.footer }}
   {{ page.scripts }}
