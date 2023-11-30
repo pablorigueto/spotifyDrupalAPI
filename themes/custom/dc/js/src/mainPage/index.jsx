@@ -2,23 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { getAccessToken, getTopHitsPlaylistId, getTopTracks } from './controller';
 import fetchLastfmGenres from '../getGenre';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
-import Modal from 'react-modal';
-
-// Define modal styles
-const modalStyles = {
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  content: {
-    width: '50%',
-    margin: 'auto',
-    backgroundColor: '#fff',
-    padding: '20px',
-    borderRadius: '8px',
-  },
-};
 
 const fetchSpotifyData = async () => {
   const accessToken = await getAccessToken();
@@ -33,21 +16,58 @@ const SpotifyDataComponent = () => {
     retry: 5,
   });
 
-  const [selectedTrack, setSelectedTrack] = useState(null);
-
-  const openModal = (track) => {
-    setSelectedTrack(track);
-  };
-
-  const closeModal = () => {
-    setSelectedTrack(null);
-  };
-
   const [lastfmGenres, setLastfmGenres] = useState([]);
 
   useEffect(() => {
     fetchLastfmGenres(data, setLastfmGenres);
   }, [data]);
+
+  const sendSpotifyDataToDrupal = async (spotifyData) => {
+    try {
+      const baseUrl = window.location.origin;
+      const sendDataEndpoint = `${baseUrl}/submit-spotify-data`;
+  
+      const response = await fetch(sendDataEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data: spotifyData }), // Wrap your array in an object with a key (e.g., 'data')
+      });
+  
+      if (response.ok) {
+        console.log('Spotify data sent successfully');
+      } else {
+        console.error('Failed to send Spotify data to Drupal. Status:', response.status);
+        const errorMessage = await response.text(); // Get the error message from the response
+        console.error('Error message:', errorMessage);
+      }
+    } catch (error) {
+      console.error('Error sending Spotify data:', error.message);
+    }
+  };
+  
+
+  const handleSendDataToDrupal = () => {
+    if (data && data.items) {
+      const formattedData = data.items.map((track) => ({
+        track_name: track.track.name,
+        track_added_at: track.added_at,
+        track_album_image_url: track.track.album.images[0].url,
+        track_id: track.track.id,
+        album_type: track.track.album.album_type,
+        artist_id: track.track.artists[0].id,
+        artist_name: track.track.artists[0].name,
+        popularity: track.track.popularity,
+        track_number: track.track.track_number,
+        // Add other fields as needed
+      }));
+  
+      // Call the function to send data to Drupal
+      sendSpotifyDataToDrupal(formattedData);
+    }
+  };
+  
 
   if (isLoading && !data) {
     return <p>Loading...</p>;
@@ -60,38 +80,16 @@ const SpotifyDataComponent = () => {
       {data && (
         <div>
           <h2>Top 20 Tracks</h2>
-          {/* Wrap your tracks in the Carousel component */}
-          <Carousel>
-            {data.items.map((track, index) => (
-              <div key={index}>
-                <p>{track.track.name}</p>
-
-                <img src={track.track.album.images[0].url} alt={track.track.name} />
-
-                <div>Genre: {lastfmGenres[index] || 'N/A'}</div>
-                <button onClick={() => openModal(track)}>View Details</button>
-                {/* Include other track information as needed */}
-              </div>
-            ))}
-          </Carousel>
+          {data.items.map((track, index) => (
+            <div key={index}>
+              <p>{track.track.name}</p>
+              <img src={track.track.album.images[0].url} alt={track.track.name} />
+              <div>Genre: {lastfmGenres[index] || 'N/A'}</div>
+            </div>
+          ))}
+          <button onClick={handleSendDataToDrupal}>Send Data to Drupal</button>
         </div>
       )}
-
-      {/* Modal for displaying details */}
-      <Modal
-        isOpen={selectedTrack !== null}
-        onRequestClose={closeModal}
-        style={modalStyles}
-        contentLabel="Track Details"
-      >
-        {selectedTrack && (
-          <div>
-            <h2>{selectedTrack.track.name}</h2>
-            {/* Add other details here */}
-            <button onClick={closeModal}>Close</button>
-          </div>
-        )}
-      </Modal>
     </div>
   );
 };

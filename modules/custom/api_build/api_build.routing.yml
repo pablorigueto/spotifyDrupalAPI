@@ -21,3 +21,13 @@ api_build.lastfm_api:
     _title: 'Last.fm API'
   requirements:
     _access: 'TRUE'
+
+api_build.send_data:
+  path: '/submit-spotify-data'
+  defaults:
+    _controller: '\Drupal\api_build\Controller\SpotifyDataController::submitSpotifyData'
+    _title: 'Send Spotify Data'
+  methods:
+    - POST
+  requirements:
+    _access: 'TRUE'
