@@ -29,5 +29,13 @@ function dc_theme($existing, $type, $theme, $path) {
       'variables' => [],
       'template' => 'home-page-template',
     ],
+    'artists_page_template' => [
+      'variables' => [],
+      'template' => 'artists-page-template',
+    ],
+    'song_page_template' => [
+      'variables' => [],
+      'template' => 'song-page-template',
+    ],
   ];
 }

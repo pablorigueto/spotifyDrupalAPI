@@ -47,3 +47,20 @@ api_build.home:
     _title: 'Homepage'
   requirements:
     _permission: 'access content'
+
+api_build.artists:
+  path: '/artists'
+  defaults:
+    _controller: '\Drupal\api_build\Controller\ArtistsPage::artistsPage'
+    _title: 'Artists'
+  requirements:
+    _permission: 'access content'
+
+api_build.songs:
+  path: '/songs'
+  defaults:
+    _controller: '\Drupal\api_build\Controller\SongPage::songPage'
+    _title: 'Songspage'
+  requirements:
+    _permission: 'access content'
+

@@ -10,7 +10,6 @@ use Drupal\Core\Controller\ControllerBase;
 class HomePage extends ControllerBase {
 
   public function homepage() {
-    // Your controller logic goes here.
     return [
       '#theme' => 'home_page_template',
     ];
