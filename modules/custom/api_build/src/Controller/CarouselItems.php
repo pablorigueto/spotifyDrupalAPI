@@ -54,8 +54,8 @@ class CarouselItems extends ControllerBase {
         ->accessCheck(FALSE);
       $nids = $query->execute();
 
-      // Load node entities.
-      $nodes = Node::loadMultiple($nids);
+      // Load node entities using the entity type manager.
+      $nodes = $this->entityTypeManager->getStorage('node')->loadMultiple($nids);
 
       // Prepare an array to store node fields.
       $spotifyData = [];
