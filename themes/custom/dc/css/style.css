@@ -4,8 +4,8 @@
 #block-dc-site-branding,
 .search-block-form,
 #block-dc-main-menu,
-#block-dc-account-menu {
+#block-dc-account-menu,
+.path-home #block-dc-page-title {
   display: none;
 }
-
 
