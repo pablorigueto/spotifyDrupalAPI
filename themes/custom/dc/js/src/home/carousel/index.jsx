@@ -23,6 +23,7 @@ const SpotifyCarousel = () => {
       <Carousel>
         {data.map((track, index) => (
           <div key={index}>
+            <h2>{track.track_name}</h2>
             <img alt={`Slide ${index + 1}`} src={track.track_album_image_url} />
             <a href={`/node/${track.node_id}`}>
               <p className="legend">

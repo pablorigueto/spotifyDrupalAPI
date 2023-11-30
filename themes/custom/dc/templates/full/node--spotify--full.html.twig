@@ -1,4 +1,4 @@
-{# node--spotify--teaser.html.twig #}
+{# node--spotify--full.html.twig #}
 
 <article{{ attributes }}>
   {{ title_prefix }}
@@ -8,11 +8,13 @@
   {{ title_suffix }}
 
   <div class="spotify-teaser-content">
-    {% if content.track_album_image_url %}
-      {{ content.track_album_image_url }}
-      {{ content }}
-    {% endif %}
+  {% if content.track_album_image_url %}
+    {# Assuming track_album_image_url is a URL field #}
+    {% set imageUrl = content.track_album_image_url['#items'].0.value %}
 
-    {# You can add more teaser-specific fields or content here #}
+    <img src="{{ imageUrl }}" alt="{{ content.track_album_type }}">
+    {{ content }}
+
+  {% endif %}
   </div>
 </article>

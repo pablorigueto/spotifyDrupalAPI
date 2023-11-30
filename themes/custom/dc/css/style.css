@@ -1,5 +1,6 @@
 :root {
-  --breadcrumb-link-hover-color: #000; /* Set your desired hover color */
+  --dark-color: #000;
+  --white-color: #fff;
 }
 
 #block-dc-powered,
@@ -56,5 +57,39 @@
 }
 
 #block-dc-breadcrumbs ol li a:hover {
-  color: var(--breadcrumb-link-hover-color);
+  color: var(--dark-color);
 }
+
+.carousel-root {
+  border: 1.5rem solid var(--white-color);
+  border-bottom: unset;
+  box-shadow: 0.1rem 0 0.5rem var(--dark-color);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.homepage .carousel .slide .legend {
+  bottom: 55px;
+  opacity: 1;
+  font-size: 14px;
+  background: var(--white-color);
+  color: var(--dark-color);
+  transition: all ease 0.5s;
+}
+
+.homepage .carousel .slide .legend:hover {
+  bottom: 55px;
+  opacity: 1;
+  font-size: 14px;
+  background: var(--dark-color);
+  color: var(--white-color);
+}
+
+.homepage .carousel .control-dots .dot {
+  background: var(--dark-color);
+}
+
+.homepage .carousel .slide img {
+  border-radius: 1rem 1rem 0 0;
+}
+
+
