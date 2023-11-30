@@ -32,21 +32,21 @@ const SpotifyDataComponent = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ data: spotifyData }), // Wrap your array in an object with a key (e.g., 'data')
+        body: JSON.stringify({ data: spotifyData }),
       });
   
       if (response.ok) {
         console.log('Spotify data sent successfully');
-      } else {
+      }
+      else {
         console.error('Failed to send Spotify data to Drupal. Status:', response.status);
-        const errorMessage = await response.text(); // Get the error message from the response
+        const errorMessage = await response.text();
         console.error('Error message:', errorMessage);
       }
     } catch (error) {
       console.error('Error sending Spotify data:', error.message);
     }
   };
-  
 
   const handleSendDataToDrupal = () => {
     if (data && data.items) {
@@ -60,14 +60,12 @@ const SpotifyDataComponent = () => {
         artist_name: track.track.artists[0].name,
         popularity: track.track.popularity,
         track_number: track.track.track_number,
-        // Add other fields as needed
       }));
   
       // Call the function to send data to Drupal
       sendSpotifyDataToDrupal(formattedData);
     }
   };
-  
 
   if (isLoading && !data) {
     return <p>Loading...</p>;

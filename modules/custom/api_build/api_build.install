@@ -6,12 +6,24 @@
  */
 
 use Drupal\Core\Database\Database;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\node\Entity\NodeType;
 
 /**
  * Implements hook_install().
  */
 function api_build_install() {
+
+  // Set the default theme.
+  \Drupal::configFactory()
+    ->getEditable('system.theme')
+    ->set('default', 'dc')
+    ->save();
+
   _api_build_create_spotify_credentials_table();
+  _spotify_content_type();
+
 }
 
 /**
@@ -30,5 +42,137 @@ function _api_build_create_spotify_credentials_table() {
       ],
       'primary key' => ['id'],
     ]);
+  }
+}
+
+function _spotify_content_type() {
+
+  $entity_type = 'node';
+  $bundle = 'spotify';
+
+  // Check if a node of type 'spotify' already exists.
+  $query = \Drupal::entityQuery($entity_type)
+    ->condition('type', $bundle)
+    ->accessCheck(FALSE);
+
+  if (empty($query->execute())) {
+    // Create the content type.
+    $content_type = NodeType::create([
+      'type' => $bundle,
+      'name' => t('Spotify Node'),
+      'description' => t('Storage Spotify top 20 songs'),
+    ]);
+    $content_type->save();
+  }
+
+  // Add fiels to spotify content type.
+  $fields = [
+    [
+      'field_name' => 'track_album_image_url',
+      'label' => t('Album Image URI'),
+      'type' => 'string',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'status' => TRUE,
+    ],
+    [
+      'field_name' => 'track_added_at',
+      'label' => t('Track added at'),
+      'type' => 'string',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'status' => TRUE,
+    ],
+    [
+      'field_name' => 'track_album_type',
+      'label' => t('Track album type'),
+      'type' => 'string',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'status' => TRUE,
+    ],
+    [
+      'field_name' => 'track_artist_id',
+      'label' => t('Track artist id'),
+      'type' => 'string',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'status' => TRUE,
+    ],
+    [
+      'field_name' => 'track_artist_name',
+      'label' => t('Track artist name'),
+      'type' => 'string',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'status' => TRUE,
+    ],
+    [
+      'field_name' => 'track_id',
+      'label' => t('Track id'),
+      'type' => 'string',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'status' => TRUE,
+    ],
+    [
+      'field_name' => 'track_main_genre',
+      'label' => t('Track main genre'),
+      'type' => 'string',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'status' => TRUE,
+    ],
+    [
+      'field_name' => 'track_name',
+      'label' => t('Track name'),
+      'type' => 'string',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'status' => TRUE,
+    ],
+    [
+      'field_name' => 'track_number',
+      'label' => t('Track number'),
+      'type' => 'string',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'status' => TRUE,
+    ],
+    [
+      'field_name' => 'track_popularity',
+      'label' => t('Track popularity'),
+      'type' => 'string',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'status' => TRUE,
+    ],
+  ];
+
+  foreach ($fields as $field) {
+    $field_storage = FieldStorageConfig::create([
+      'field_name' => $field['field_name'],
+      'entity_type' => $entity_type,
+      'type' => $field['type'],
+      'required' => $field['required'],
+      'status' => $field['status'],
+      'settings' => $field['settings'] ?? [],
+      'cardinality' => $field['cardinality'] ?? 1,
+      'translatable' => $field['translatable'] ?? TRUE,
+    ]);
+    $field_storage->save();
+
+    // Create the field config.
+    $field_config = FieldConfig::create([
+      'field_storage' => $field_storage,
+      'bundle' => $bundle,
+      'label' => $field['label'],
+      'required' => $field['required'],
+      'status' => $field['status'],
+      'settings' => $field['settings'] ?? [],
+      'cardinality' => $field['cardinality'] ?? 1,
+      'translatable' => $field['translatable'] ?? TRUE,
+    ]);
+    $field_config->save();
   }
 }

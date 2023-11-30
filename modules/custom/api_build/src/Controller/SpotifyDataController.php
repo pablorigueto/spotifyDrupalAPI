@@ -69,16 +69,17 @@ class SpotifyDataController extends ControllerBase {
         $node = Node::create([
           'type' => 'spotify',
           'title' => $trackData['track_name'],
-          'field_track_added_at' => $trackData['track_added_at'],
-          'field_track_album_image_url' => $trackData['track_album_image_url'],
-          'field_track_album_type' => $trackData['album_type'],
-          'field_track_artist_id' => $trackData['artist_id'],
-          'field_track_artist_name' => $trackData['artist_name'],
-          'field_track_id' => $trackData['track_id'],
-          'field_track_main_genre' => $trackData['track_main_genre'],
-          'field_track_name' => $trackData['track_name'],
-          'field_track_number' => $trackData['track_number'],
-          'field_track_popularity' => $trackData['popularity'],
+          'track_added_at' => $trackData['track_added_at'],
+          'track_album_image_url' => $trackData['track_album_image_url'],
+          'track_album_type' => $trackData['album_type'],
+          'track_artist_id' => $trackData['artist_id'],
+          'track_artist_name' => $trackData['artist_name'],
+          'track_id' => $trackData['track_id'],
+          'track_main_genre' => $trackData['track_main_genre'],
+          'track_name' => $trackData['track_name'],
+          'track_number' => $trackData['track_number'],
+          'track_popularity' => $trackData['popularity'],
+          'promote' => 1, //Set to 1 to promote to front page.
         ]);
 
         $node->save();

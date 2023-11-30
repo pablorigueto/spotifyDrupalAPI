@@ -43,6 +43,20 @@ class SpotifyController extends ControllerBase {
   const SPOTIFY_API_URL = 'https://accounts.spotify.com/api/token';
 
   /**
+   * The Spotify Client ID.
+   *
+   * @var string
+   */
+  const SPOTIFY_CLIEND_ID = 'e5e1d9df66c24af197beb3b9b020fd21';
+
+  /**
+   * The Spotify Client Secret.
+   *
+   * @var string
+   */
+  const SPOTIFY_CLIENT_SECRET = '06928943983843c489f6f5e21cc6be63';
+
+  /**
    * Constructs a new SpotifyController object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
@@ -75,13 +89,14 @@ class SpotifyController extends ControllerBase {
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   The JSON response.
    */
-  public function getSpotifyAccessToken(): ?JsonResponse {
+  public function getSpotifyAccessToken(): JsonResponse {
     try {
       $entities = $this->entityTypeManager->getStorage('spotify_credentials')->loadMultiple();
 
-      // Check if any entities were loaded.
+      // If the user not set the keys, use this one to test.
       if (empty($entities)) {
-        return NULL;
+        $clientId = self::SPOTIFY_CLIEND_ID;
+        $clientSecret = self::SPOTIFY_CLIENT_SECRET;
       }
 
       // Check if any entities were loaded.
