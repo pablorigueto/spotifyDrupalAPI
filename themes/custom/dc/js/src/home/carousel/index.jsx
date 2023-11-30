@@ -35,14 +35,17 @@ const SpotifyCarousel = () => {
   return (
     <Carousel>
       {data.map((track, index) => (
-        <div key={index}>
+        <div>
           <img alt={`Slide ${index + 1}`} src={track.track_album_image_url} />
-          <p className="legend">
-            {track.track_name} - {track.track_artist_name}
-          </p>
+          <a key={index} href={`/node/${track.node_id}`}>
+            <p className="legend">
+              See more about: {track.track_name} - {track.track_artist_name}
+            </p>
+          </a>
         </div>
       ))}
     </Carousel>
+
   );
 };
 
