@@ -3,7 +3,10 @@ const isDevMode = process.env.NODE_ENV !== 'production';
 
 const config = {
   entry: {
-    main: ["./js/src/index.jsx"]
+    main: ["./js/src/index.jsx"],
+    carousel: ["./js/src/home/index.jsx"],
+    artists: ["./js/src/artists/index.jsx"],
+    songs: ["./js/src/songs/index.jsx"],
   },
   devtool: (isDevMode) ? 'source-map' : false,
   mode: (isDevMode) ? 'development' : 'production',

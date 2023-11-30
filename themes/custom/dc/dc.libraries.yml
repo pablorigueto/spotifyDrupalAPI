@@ -5,6 +5,9 @@ global:
       css/style.css: {}
   js:
     js/dist_dev/main.min.js: {}
+    js/dist_dev/carousel.min.js: {}
+    js/dist_dev/songs.min.js: {}
+    js/dist_dev/artists.min.js: {}
     js/dist_dev/custom.js: {}
   dependencies:
     - core/drupal
