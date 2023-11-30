@@ -43,8 +43,8 @@ class SpotifyDataController extends ControllerBase {
   /**
    * Handles the submission of Spotify data.
    *
-   * @param array $data
-   *   The Spotify data to be saved.
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The Request data to be saved.
    *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   A JSON response indicating the success or failure of the operation.
@@ -79,7 +79,7 @@ class SpotifyDataController extends ControllerBase {
           'track_name' => $trackData['track_name'],
           'track_number' => $trackData['track_number'],
           'track_popularity' => $trackData['popularity'],
-          'promote' => 1, //Set to 1 to promote to front page.
+          'promote' => 0, //Set to 1 to promote to front page.
         ]);
 
         $node->save();
