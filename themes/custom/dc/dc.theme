@@ -1,10 +1,13 @@
 <?php
 
-/*
- * dc page preprocess.
- * Define variables for theme settings.
+/**
+ * Implements hook_preprocess_page() for page title templates.
  */
-function dc_preprocess_page(array &$variables) {
-  $variables;
+function dc_preprocess_page(&$variables) {
+  // Add a variable to the page template indicating if it's the front page.
+  $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+
+  // Add the current route name to the variables.
+  $variables['current_route'] = \Drupal::routeMatch()->getRouteName();
 
 }

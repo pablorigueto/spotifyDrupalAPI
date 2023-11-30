@@ -3,6 +3,15 @@ global:
   css:
     theme:
       css/style.css: {}
+      contrib-slick/slick.css: {}
+      contrib-slick/slick-theme.css: {}
   js:
     js/dist_dev/main.min.js: {}
-
+    contrib-slick/slick.js: {}
+    js/dist_dev/carousel.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupal.ajax
+    - core/drupalSettings
+    - core/jquery
+    - core/once

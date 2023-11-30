@@ -12,7 +12,7 @@ const fetchSpotifyData = async () => {
 };
 
 const SpotifyDataComponent = () => {
-  const { data, isLoading, isError } = useQuery('spotifyData', fetchSpotifyData, {
+  const { data, isLoading } = useQuery('spotifyData', fetchSpotifyData, {
     retry: 5,
   });
 
@@ -31,9 +31,14 @@ const SpotifyDataComponent = () => {
 
   const sendSpotifyDataToDrupal = async (spotifyData) => {
     try {
+
+      // Check if the current path is the root path.
+      if (window.location.pathname !== '/') {
+        return;
+      }
+
       const baseUrl = window.location.origin;
       const sendDataEndpoint = `${baseUrl}/submit-spotify-data`;
-  
       const response = await fetch(sendDataEndpoint, {
         method: 'POST',
         headers: {
@@ -44,20 +49,23 @@ const SpotifyDataComponent = () => {
 
       if (response.ok) {
         console.log('Spotify data sent successfully');
-        // Reload the page on success
+        // Reload the page on success to avoid more complexity with Cron and etc.
         window.location.reload();
       }
       else {
+        // Help to debug.
         const errorResponse = await response.json();
         if (errorResponse && errorResponse.error) {
           // Check for a specific error message
           if (errorResponse.error === 'Cannot save more than 20 Spotify nodes.') {
             // Handle the specific error here, for example, display a message to the user.
             console.log('The Top 20 list of Spotify its ok, enjoy!');
-          } else {
+          }
+          else {
             console.error('Unexpected error:', errorResponse.error);
           }
-        } else {
+        }
+        else {
           console.error('Unexpected error format:', errorResponse);
         }
       }
@@ -86,27 +94,12 @@ const SpotifyDataComponent = () => {
     }
   };
 
-  if (isLoading && !data) {
-    return <p>Loading...</p>;
+  if (isLoading && !data && window.location.pathname === '/') {
+    return <p>Getting data from Spotify API...</p>;
   }
 
   return (
-    <div>
-      <h1>Hello there - world!</h1>
-      {/* {isError && <p style={{ color: 'red' }}>Error fetching data. Please try again later.</p>}
-      {data && (
-        <div>
-          <h2>Top 20 Tracks</h2>
-          {data.items.map((track, index) => (
-            <div key={index}>
-              <p>{track.track.name}</p>
-              <img src={track.track.album.images[0].url} alt={track.track.name} />
-              <div>Genre: {lastfmGenres[index] || 'N/A'}</div>
-            </div>
-          ))}
-        </div>
-      )} */}
-    </div>
+    <p className='hasTimeToLottieOrNot' style={{ height: '18px' }}></p>
   );
 };
 

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+<head>
+  {{ head }}
+  <title>{{ head_title }}</title>
+  {{ page.head }}
+  {{ page.styles }}
+  {{ page.library }}
+  {{ page.js }}
+</head>
+<body{{ attributes.addClass(body_classes).addClass(is_front ? 'front-page' : '') }}>
+  {{ page }}
+  {{ page.footer }}
+  {{ page.scripts }}
+
+  <div class="main-content">
+    {# Include the teaser template for the Spotify node type #}
+    {% include '@dc/teaser/node--spotify--teaser.html.twig' %}
+  </div>
+</body>
+</html>
