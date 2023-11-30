@@ -1,30 +1,13 @@
 // index.jsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import fetchSpotifyData from './controller';
+import useSpotifyData from './controller';
 
 const SpotifyCarousel = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { data, isLoading, error } = useSpotifyData();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const spotifyData = await fetchSpotifyData();
-        setData(spotifyData);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return <p>Loading...</p>;
   }
 
@@ -35,17 +18,16 @@ const SpotifyCarousel = () => {
   return (
     <Carousel>
       {data.map((track, index) => (
-        <div>
+        <div key={index}>
           <img alt={`Slide ${index + 1}`} src={track.track_album_image_url} />
-          <a key={index} href={`/node/${track.node_id}`}>
+          <a href={`/node/${track.node_id}`}>
             <p className="legend">
-              See more about: {track.track_name} - {track.track_artist_name}
+              View more: {track.track_name} - {track.track_artist_name}
             </p>
           </a>
         </div>
       ))}
     </Carousel>
-
   );
 };
 
