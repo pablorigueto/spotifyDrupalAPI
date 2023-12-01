@@ -6,10 +6,10 @@ const SpotifyCarousel = () => {
   const { data: tracks, isLoading, error: tracksError } = useSpotifyData();
   const [artistsData, setArtistsData] = useState([]);
   const [error, setError] = useState(null);
-  const [sortOrder, setSortOrder] = useState('asc'); // 'asc' or 'desc'
+  const [sortOrder, setSortOrder] = useState('asc');
   const [filter, setFilter] = useState({
     name: '',
-    song: '',
+    popularity: 80,
     genre: '',
   });
 
@@ -39,10 +39,10 @@ const SpotifyCarousel = () => {
         // Filtering artistsData
         const filteredArtistsData = artistsData.filter((artist) => {
           const nameMatch = artist.name.toLowerCase().includes(filter.name.toLowerCase());
-          const songMatch = artist.genres.some((genre) => genre.toLowerCase().includes(filter.song.toLowerCase()));
           const genreMatch = artist.genres.some((genre) => genre.toLowerCase().includes(filter.genre.toLowerCase()));
+          const popularityMatch = artist.popularity >= filter.popularity; // Updated this line
 
-          return nameMatch && songMatch && genreMatch;
+          return nameMatch && genreMatch && popularityMatch;
         });
 
         if (isMounted) {
@@ -70,6 +70,13 @@ const SpotifyCarousel = () => {
     setFilter((prevFilter) => ({
       ...prevFilter,
       [key]: value,
+    }));
+  };
+
+  const handlePopularityChange = (value) => {
+    setFilter((prevFilter) => ({
+      ...prevFilter,
+      popularity: value,
     }));
   };
 
@@ -103,12 +110,18 @@ const SpotifyCarousel = () => {
           <input type="text" value={filter.name} onChange={(e) => handleFilterChange('name', e.target.value)} />
         </label>
         <label>
-          Filter by Song:
-          <input type="text" value={filter.song} onChange={(e) => handleFilterChange('song', e.target.value)} />
-        </label>
-        <label>
           Filter by Genre:
           <input type="text" value={filter.genre} onChange={(e) => handleFilterChange('genre', e.target.value)} />
+        </label>
+        <label>
+          Filter by Popularity:
+          <select value={filter.popularity} onChange={(e) => handlePopularityChange(e.target.value)}>
+            {[80, 85, 90, 95].map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
+          </select>
         </label>
       </div>
 
