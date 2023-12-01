@@ -59,37 +59,39 @@ const SpotifyCarousel = () => {
 
   return (
     <>
-      <div className="home__title">
-        <h1>Top Artists of Spotify</h1>
-      </div>
       {artistsData.map((artist, index) => (
-        <div key={index}>
-          <div>
+        <div key={index} className='details__spotify__card'>
+          <div className='details__spotify__image'>
             <img src={artist.images[0].url} alt={`Artist name ${artist.name}`} />
           </div>
-
           <h2>{artist.name}</h2>
 
-          <div className='details'>
-            <div>
-              <h4>Genre: </h4>
-            </div>
-            <div>
-              {artist.genres[0]}
+          <div className='details__spotify'>
+
+            <div className='spotify__card__details'>
+              <div className='title'>
+                <p>Genre: </p>
+              </div>
+              <div className='info'>
+                {artist.genres[0]}
+              </div>
             </div>
 
-            <div>
-              <h4>Followers: </h4>
+            <div className='spotify__card__details'>
+              <div className='title'>
+                <p>Followers: </p>
+              </div>
+              <div className='info'>
+                {artist.followers.total}
+              </div>
             </div>
-            <div>
-              {artist.followers.total}
-            </div>
-
-            <div>
-              <h4>Popularity: </h4>
-            </div>
-            <div>
-              {artist.popularity}
+            <div className='spotify__card__details'>
+              <div className='info'>
+                <p>Popularity: </p>
+              </div>
+              <div className='info'>
+                {artist.popularity}
+              </div>
             </div>
           </div>
         </div>

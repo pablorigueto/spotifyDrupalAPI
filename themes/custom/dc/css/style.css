@@ -1,6 +1,7 @@
 :root {
   --dark-color: #000;
   --white-color: #fff;
+  --ligh-shadow: #00000026;
 }
 
 body {
@@ -40,7 +41,7 @@ body {
   }
 }
 
-.path-home .home__title {
+.home__title {
   text-align: center;
 }
 
@@ -67,7 +68,7 @@ body {
 .carousel-root {
   border: 1.5rem solid var(--white-color);
   border-bottom: unset;
-  box-shadow: 0.1rem 0 0.5rem var(--dark-color);
+  box-shadow: 0.1rem 0 0.5rem var(--ligh-shadow);
   border-radius: 1rem 1rem 0 0;
 }
 
@@ -101,9 +102,20 @@ body {
   margin: 0 auto;
 }
 
+.path-artists #block-dc-content {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
 .spotify-full-content,
-.spotify-full-content div{
+.spotify-full-content div,
+.details__spotify__image img {
   width: 100%;
+}
+
+.details__spotify__image img {
+  height: 200px;
+  object-fit: cover;
 }
 
 .page-node-type-spotify .info {
@@ -119,8 +131,9 @@ body {
 }
 
 .page-node-type-spotify .title,
-.page-node-type-spotify .spotify__info {
-  box-shadow: 0.1rem 0 0.5rem var(--dark-color);
+.page-node-type-spotify .spotify__info,
+.details__spotify__card {
+  box-shadow: 0.1rem 0 0.5rem var(--ligh-shadow);
   border-radius: 0.3rem;
   padding: 1rem;
   cursor: pointer;
@@ -128,9 +141,34 @@ body {
 }
 
 .page-node-type-spotify .title:hover,
-.page-node-type-spotify .spotify__info:hover {
+.page-node-type-spotify .spotify__info:hover,
+.details__spotify__card:hover {
   transition: transform ease 0.2s;
   transform: scale(1.03);
+}
+
+.details__spotify__card {
+  margin-bottom: 1rem;
+  width: 220px;
+}
+
+.spotify__card__details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  grid-gap: 2rem;
+  box-shadow: 0.1rem 0 0.5rem var(--ligh-shadow);
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.artistspage {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .page-node-type-spotify .spotify__info {
@@ -143,20 +181,18 @@ body {
 
 .spotify-full-content img {
   border-radius: 0.5rem;
-  box-shadow: 0.1rem 0 0.5rem var(--dark-color);
+  box-shadow: 0.1rem 0 0.5rem var(--ligh-shadow);
 }
 
 #block-dc-page-title {
   text-align: center;
 }
 
-.page-node-type-spotify #block-dc-breadcrumbs {
-  display: none;
-}
-
-
+.path-artists #block-dc-page-title,
+.page-node-type-spotify #block-dc-breadcrumbs,
 .path-home .carousel .control-dots,
 .path-home .carousel-status {
   display: none;
 }
+
 
