@@ -102,7 +102,8 @@ body {
   margin: 0 auto;
 }
 
-.path-artists #block-dc-content {
+.path-artists #block-dc-content,
+.path-songs #block-dc-content {
   max-width: 1170px;
   margin: 0 auto;
 }
@@ -132,7 +133,8 @@ body {
 
 .page-node-type-spotify .title,
 .page-node-type-spotify .spotify__info,
-.details__spotify__card {
+.details__spotify__card,
+.song__teaser {
   box-shadow: 0.1rem 0 0.5rem var(--ligh-shadow);
   border-radius: 0.3rem;
   padding: 1rem;
@@ -142,7 +144,8 @@ body {
 
 .page-node-type-spotify .title:hover,
 .page-node-type-spotify .spotify__info:hover,
-.details__spotify__card:hover {
+.details__spotify__card:hover,
+.song__teaser:hover {
   transition: transform ease 0.2s;
   transform: scale(1.01);
 }
@@ -229,12 +232,7 @@ body {
 }
 
 .song__teaser {
-  margin: 0 auto;
-  margin-bottom: 1rem;
   width: 14rem;
-  padding: 1rem;
-  box-shadow: 0.1rem 0 0.5rem var(--ligh-shadow);
-  border-radius: 0.3rem;
 }
 
 .song__image {
@@ -245,8 +243,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  max-width: 1170px;
-  margin: 0 auto;
   cursor: pointer;
 }
 
