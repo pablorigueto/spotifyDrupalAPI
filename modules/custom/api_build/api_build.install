@@ -15,11 +15,11 @@ use Drupal\node\Entity\NodeType;
  */
 function api_build_install() {
 
-  // Set the default theme.
-  \Drupal::configFactory()
-    ->getEditable('system.theme')
-    ->set('default', 'dc')
-    ->save();
+  // Enable the DC theme.
+  \Drupal::service('theme_installer')->install(['dc']);
+
+  // Set DC as the default theme.
+  \Drupal::configFactory()->getEditable('system.theme')->set('default', 'dc')->save();
 
   _api_build_create_spotify_credentials_table();
   _spotify_content_type();
