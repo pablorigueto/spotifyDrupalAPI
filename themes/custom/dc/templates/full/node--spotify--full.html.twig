@@ -34,6 +34,24 @@
 
     <div class="info">
       <div class="title">
+        {{ 'Artist Followers'|t }}
+      </div>
+      <div class="spotify__info">
+        {{ content.artist_followers['#items'].0.value }}
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="title">
+        {{ 'Artist Popularity'|t }}
+      </div>
+      <div class="spotify__info">
+        {{ content.artist_popularity['#items'].0.value }}
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="title">
         {{ 'Album type'|t }}
       </div>
       <div class="spotify__info">
@@ -46,7 +64,7 @@
         {{ 'Genre'|t }}
       </div>
       <div class="spotify__info">
-        {{ content.track_main_genre['#items'].0.value }}
+        {{ content.artist_genre['#items'].0.value }}
       </div>
     </div>
 

@@ -1,43 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
-import { getAccessToken, getTopHitsPlaylistId, getTopTracks } from './controller';
-import fetchLastfmGenres from '../getGenre';
+import { getAccessToken, getTopHitsPlaylistId, getTopTracksWithGenres } from './controller';
 
 const fetchSpotifyData = async () => {
   const accessToken = await getAccessToken();
   const topHitsPlaylistId = await getTopHitsPlaylistId(accessToken);
-  const tracksData = await getTopTracks(accessToken, topHitsPlaylistId);
+  const tracksData = await getTopTracksWithGenres(accessToken, topHitsPlaylistId);
 
   return tracksData;
 };
+
 
 const SpotifyDataComponent = () => {
   const { data, isLoading } = useQuery('spotifyData', fetchSpotifyData, {
     retry: 5,
   });
 
-  const [lastfmGenres, setLastfmGenres] = useState([]);
-
-  useEffect(() => {
-    fetchLastfmGenres(data, setLastfmGenres);
-  }, [data]);
-
-  useEffect(() => {
-    // This effect will run when data is loaded, including the lastfmGenres.
-    if (!isLoading && data && data.items) {
-      handleSendDataToDrupal();
-    }
-  }, [lastfmGenres]);
-
   const currentPath = window.location.pathname;
+
+  useEffect(() => {
+    handleSendDataToDrupal();
+  }, [data]);
 
   const sendSpotifyDataToDrupal = async (spotifyData) => {
     try {
-
-      // Check if the current path is the root path.
-      if (currentPath !== '/') {
-        return;
-      }
 
       const baseUrl = window.location.origin;
       const sendDataEndpoint = `${baseUrl}/submit-spotify-data`;
@@ -52,7 +38,6 @@ const SpotifyDataComponent = () => {
       if (response.ok) {
         console.log('Spotify data sent successfully');
         // Reload the page on success to avoid more complexity with Cron and etc.
-        //window.location.reload();
         window.location.href = 'home';
       }
       else {
@@ -77,8 +62,10 @@ const SpotifyDataComponent = () => {
   };
 
   const handleSendDataToDrupal = () => {
-    if (data && data.items) {
-      const formattedData = data.items.map((track) => ({
+
+    if (data) {
+      const formattedData = data.map((track) => ({
+        
         track_name: track.track.name,
         track_added_at: track.added_at,
         track_album_image_url: track.track.album.images[0].url,
@@ -88,9 +75,11 @@ const SpotifyDataComponent = () => {
         artist_name: track.track.artists[0].name,
         popularity: track.track.popularity,
         track_number: track.track.track_number,
-        genre: lastfmGenres[data.items.indexOf(track)] || 'N/A',
+        genre: track.genre,
+        followers: track.followers,
+        artist_image: track.artist_image,
+        artist_popularity: track.artist_popularity
       }));
-
       // Call the function to send data to Drupal.
       sendSpotifyDataToDrupal(formattedData);
     }

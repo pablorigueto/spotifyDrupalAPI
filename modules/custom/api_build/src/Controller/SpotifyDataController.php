@@ -75,11 +75,15 @@ class SpotifyDataController extends ControllerBase {
           'track_artist_id' => $trackData['artist_id'],
           'track_artist_name' => $trackData['artist_name'],
           'track_id' => $trackData['track_id'],
-          'track_main_genre' => $trackData['genre'],
           'track_name' => $trackData['track_name'],
           'track_number' => $trackData['track_number'],
           'track_popularity' => $trackData['popularity'],
+          'artist_genre'  => $trackData['genre'],
+          'artist_followers'  => $trackData['followers'],
+          'artist_image'  => $trackData['artist_image'],
+          'artist_popularity'  => $trackData['artist_popularity'],
           'promote' => 0, //Set to 1 to promote to front page.
+
         ]);
 
         $node->save();

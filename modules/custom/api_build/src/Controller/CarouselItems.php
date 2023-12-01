@@ -69,7 +69,7 @@ class CarouselItems extends ControllerBase {
           'track_artist_id' => $node->get('track_artist_id')->value,
           'track_artist_name' => $node->get('track_artist_name')->value,
           'track_id' => $node->get('track_id')->value,
-          'track_main_genre' => $node->get('track_main_genre')->value,
+          'track_main_genre' => $node->get('artist_genre')->value,
           'track_name' => $node->get('track_name')->value,
           'track_number' => $node->get('track_number')->value,
           'track_popularity' => $node->get('track_popularity')->value,
