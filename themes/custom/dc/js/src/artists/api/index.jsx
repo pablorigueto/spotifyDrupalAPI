@@ -108,7 +108,7 @@ const SpotifyCarousel = () => {
 
   return (
     <>
-      <div>
+      <div className='filters'>
         <label>
           Sort Order:
           <select value={sortOrder} onChange={handleSortOrderChange}>
@@ -116,9 +116,6 @@ const SpotifyCarousel = () => {
             <option value="desc">Descending</option>
           </select>
         </label>
-      </div>
-
-      <div>
         <label>
           Filter by Name:
           <input type="text" value={filter.name} onChange={(e) => handleFilterChange('name', e.target.value)} />
@@ -138,6 +135,7 @@ const SpotifyCarousel = () => {
           </select>
         </label>
       </div>
+      
       <div className='main__spotify__card'>
         {artistsData.map((artist, index) => (
           <div key={index} className='details__spotify__card'>

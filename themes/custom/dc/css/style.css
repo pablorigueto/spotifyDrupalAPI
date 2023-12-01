@@ -164,6 +164,10 @@ body {
   width: 14rem;
 }
 
+.path-node h1 {
+  text-align: center;
+}
+
 .spotify__card__details {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -176,11 +180,12 @@ body {
   margin-bottom: 1rem;
 }
 
-.artistspage {
+.filters {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  padding-bottom: 3rem;
   gap: 1rem;
+  padding-top: 1rem;
 }
 
 .page-node-type-spotify .spotify__info {
