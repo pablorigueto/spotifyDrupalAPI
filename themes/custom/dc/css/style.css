@@ -144,7 +144,7 @@ body {
 .page-node-type-spotify .spotify__info:hover,
 .details__spotify__card:hover {
   transition: transform ease 0.2s;
-  transform: scale(1.03);
+  transform: scale(1.01);
 }
 
 .details__spotify__card {
@@ -195,4 +195,21 @@ body {
   display: none;
 }
 
+.node__back {
+  padding: 1rem 0;
+}
 
+.node__back a {
+  padding: 0.7rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: unset;
+  background: var(--dark-color);
+  color: var(--white-color);
+  font-weight: 800;
+  transition: transform ease 0.5s;
+}
+
+.node__back a:hover {
+  transform: scale(1.01);
+  transition: transform ease 0.5s;
+}
