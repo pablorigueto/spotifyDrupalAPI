@@ -135,7 +135,7 @@ const SpotifyCarousel = () => {
 
             <div className='spotify__card__details artist_link'>
               <div className='info'>
-                <a href={artist.external_urls.spotify} target='__blank'>Spotify Artist Link</a>
+                <a href={artist.external_urls.spotify} target='__blank'>Spotify Artist</a>
               </div>
             </div>
 

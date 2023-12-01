@@ -92,6 +92,14 @@ function _spotify_content_type() {
       'status' => TRUE,
     ],
     [
+      'field_name' => 'track_album_url',
+      'label' => t('Track album URL'),
+      'type' => 'string',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'status' => TRUE,
+    ],
+    [
       'field_name' => 'track_artist_id',
       'label' => t('Track artist id'),
       'type' => 'string',

@@ -13,6 +13,12 @@
     <img src="{{ imageUrl }}" alt="{{ content.track_album_type }}">
 
     <div class="info">
+      <div class="spotify__info song__link">
+       <a href={{ content.track_album_url['#items'].0.value }} target="__blank">{{ 'Spotify Album'|t }}</a>
+      </div>
+    </div>
+
+    <div class="info">
       <div class="title">
         {{ 'Song'|t }}
       </div>

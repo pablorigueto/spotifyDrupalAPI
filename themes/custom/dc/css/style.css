@@ -257,13 +257,12 @@ body {
   text-align: center;
   display: block;
   height: 20px;
-  background: var(--dark-color);
   transition: all ease 0.3s;
 }
 
 .song__more a {
   text-decoration: unset;
-  color: var(--white-color);
+  color: var(--dark-color);
   transition: all ease 0.3s;
 }
 
@@ -276,13 +275,18 @@ body {
   margin-top: unset;
 }
 
-.artist_link {
+.artist_link, .song__link {
   display: block;
   text-align: center;
   background: var(--dark-color);
 }
 
-.artist_link a {
+.artist_link a,
+.song__link a {
   text-decoration: unset;
   color: var(--white-color);
+}
+
+.path-songs .song__link {
+  height: 20px;
 }

@@ -64,6 +64,7 @@ const SpotifyDataComponent = () => {
   const handleSendDataToDrupal = () => {
 
     if (data) {
+      
       const formattedData = data.map((track) => ({
         
         track_name: track.track.name,
@@ -71,6 +72,7 @@ const SpotifyDataComponent = () => {
         track_album_image_url: track.track.album.images[0].url,
         track_id: track.track.id,
         album_type: track.track.album.album_type,
+        album_url: track.track.album.external_urls.spotify,
         artist_id: track.track.artists[0].id,
         artist_name: track.track.artists[0].name,
         popularity: track.track.popularity,

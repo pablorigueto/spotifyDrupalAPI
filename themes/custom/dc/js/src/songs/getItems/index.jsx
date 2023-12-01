@@ -35,10 +35,10 @@ const SpotifySongs = () => {
 
             <h2>{track.track_name}</h2>
 
-            <div className='spotify__card__details spotify__card__song song__more'>
-              <a href={`/node/${track.node_id}`}>
-                  View more
-              </a>
+            <div className='spotify__card__details spotify__card__song song__link'>
+              <div className='info'>
+                <a href={track.track_album_url} target="__blank">Spotify Album</a>
+              </div>
             </div>
 
             <div className='spotify__card__details spotify__card__song'>
@@ -102,6 +102,12 @@ const SpotifySongs = () => {
               <div className='info'>
               {track.track_popularity}
               </div>
+            </div>
+
+            <div className='spotify__card__details spotify__card__song song__more'>
+              <a href={`/node/${track.node_id}`}>
+                  View more
+              </a>
             </div>
 
           </div>
