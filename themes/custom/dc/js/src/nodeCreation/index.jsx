@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { getAccessToken, getTopHitsPlaylistId, getTopTracksWithGenres } from './controller';
 import Lottie from "lottie-react";
-import lottieLoading from "../../../assets/Animation - 1701449656833.json";
+import lottieLoading from "../../../assets/songloading.json";
 
 const fetchSpotifyData = async () => {
   const accessToken = await getAccessToken();
