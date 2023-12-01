@@ -8,7 +8,7 @@ export const getAccessToken = async () => {
     return tokenResponse.data.access_token;
   } catch (error) {
     console.error('Error fetching access token:', error);
-    throw error; // Rethrow the error to be caught by the component
+    throw error;
   }
 };
 
@@ -22,10 +22,9 @@ export const getArtistDetails = async (accessToken, artistId) => {
         country: 'US',
       },
     });
-
     return artistResponse.data;
   } catch (error) {
     console.error('Error fetching artist details:', error);
-    throw error; // Rethrow the error to be caught by the component
+    throw error;
   }
 };
