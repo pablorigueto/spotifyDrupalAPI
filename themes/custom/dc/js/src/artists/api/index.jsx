@@ -6,6 +6,12 @@ const SpotifyCarousel = () => {
   const { data: tracks, isLoading, error: tracksError } = useSpotifyData();
   const [artistsData, setArtistsData] = useState([]);
   const [error, setError] = useState(null);
+  const [sortOrder, setSortOrder] = useState('asc'); // 'asc' or 'desc'
+  const [filter, setFilter] = useState({
+    name: '',
+    song: '',
+    genre: '',
+  });
 
   useEffect(() => {
     let isMounted = true;
@@ -24,11 +30,23 @@ const SpotifyCarousel = () => {
 
         const artistsData = await Promise.all(artistsPromises);
 
-        // Sorting artistsData by artist name in ascending order
-        artistsData.sort((a, b) => a.name.localeCompare(b.name));
+        // Sorting artistsData by artist name
+        artistsData.sort((a, b) => {
+          const compareValue = a.name.localeCompare(b.name);
+          return sortOrder === 'asc' ? compareValue : -compareValue;
+        });
+
+        // Filtering artistsData
+        const filteredArtistsData = artistsData.filter((artist) => {
+          const nameMatch = artist.name.toLowerCase().includes(filter.name.toLowerCase());
+          const songMatch = artist.genres.some((genre) => genre.toLowerCase().includes(filter.song.toLowerCase()));
+          const genreMatch = artist.genres.some((genre) => genre.toLowerCase().includes(filter.genre.toLowerCase()));
+
+          return nameMatch && songMatch && genreMatch;
+        });
 
         if (isMounted) {
-          setArtistsData(artistsData);
+          setArtistsData(filteredArtistsData);
         }
       } catch (error) {
         if (isMounted) {
@@ -42,8 +60,18 @@ const SpotifyCarousel = () => {
     return () => {
       isMounted = false;
     };
+  }, [tracks, sortOrder, filter]);
 
-  }, [tracks]);
+  const handleSortOrderChange = () => {
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  };
+
+  const handleFilterChange = (key, value) => {
+    setFilter((prevFilter) => ({
+      ...prevFilter,
+      [key]: value,
+    }));
+  };
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -59,6 +87,31 @@ const SpotifyCarousel = () => {
 
   return (
     <>
+      <div>
+        <label>
+          Sort Order:
+          <select value={sortOrder} onChange={handleSortOrderChange}>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </label>
+      </div>
+
+      <div>
+        <label>
+          Filter by Name:
+          <input type="text" value={filter.name} onChange={(e) => handleFilterChange('name', e.target.value)} />
+        </label>
+        <label>
+          Filter by Song:
+          <input type="text" value={filter.song} onChange={(e) => handleFilterChange('song', e.target.value)} />
+        </label>
+        <label>
+          Filter by Genre:
+          <input type="text" value={filter.genre} onChange={(e) => handleFilterChange('genre', e.target.value)} />
+        </label>
+      </div>
+
       {artistsData.map((artist, index) => (
         <div key={index} className='details__spotify__card'>
           <div className='details__spotify__image'>
@@ -95,6 +148,8 @@ const SpotifyCarousel = () => {
             </div>
           </div>
         </div>
+ 
+ 
       ))}
     </>
   );
