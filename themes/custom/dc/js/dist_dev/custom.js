@@ -59,7 +59,7 @@
       once.addBackButton = true;
 
       // Create a new div element
-      var backButtonDiv = '<div class="node__back"><a href="/home">Back</a></div>';
+      var backButtonDiv = '<div class="node__back"><a href="/home">Home</a></div>';
 
       // Get the parent element where you want to prepend the new div
       var parentElement = $('.page-node-type-spotify #block-dc-content', context);
