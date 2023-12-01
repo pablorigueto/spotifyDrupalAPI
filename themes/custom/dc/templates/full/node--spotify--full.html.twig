@@ -5,7 +5,7 @@
     <h2{{ title_attributes }}><a href="{{ url }}" rel="bookmark">{{ label }}</a></h2>
   {% endif %}
   {{ title_suffix }}
-  <div class="spotify-full-content">
+  <div class="spotify-full-content" id="loading-data">
   {% if content.track_album_image_url %}
     {# Assuming track_album_image_url is a URL field #}
     {% set imageUrl = content.track_album_image_url['#items'].0.value %}

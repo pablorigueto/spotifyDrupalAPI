@@ -22,14 +22,6 @@ api_build.settings_form:
   requirements:
     _permission: 'administer site configuration'
 
-api_build.lastfm_api:
-  path: '/lastfm-api/{artistName}/{trackName}'
-  defaults:
-    _controller: '\Drupal\api_build\Controller\LastFMController::getGenreFromLastfmAPI'
-    _title: 'Last.fm API'
-  requirements:
-    _access: 'TRUE'
-
 api_build.send_data:
   path: '/submit-spotify-data'
   defaults:

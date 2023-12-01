@@ -14,10 +14,10 @@ const App = () => {
 };
 
 // Find the element with ID 'block-dc-page-title' and check if it's the front page.
-const blockDcPageTitleElement = document.getElementById('block-dc-page-title');
+const loadingData = document.getElementById('loading-data');
 const isFrontPage = document.body.classList.contains('path-frontpage');
 
 // Check if the element exists before rendering.
-if (isFrontPage && blockDcPageTitleElement) {
-  ReactDOM.render(<App />, blockDcPageTitleElement);
+if (isFrontPage && loadingData) {
+  ReactDOM.render(<App />, loadingData);
 }

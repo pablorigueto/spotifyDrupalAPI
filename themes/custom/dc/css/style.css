@@ -14,8 +14,16 @@ body {
 .search-block-form,
 #block-dc-main-menu,
 #block-dc-account-menu,
-.path-home #block-dc-page-title {
+.path-home #loading-data,
+.path-frontpage #block-dc-page-title,
+.path-frontpage #block-dc-content,
+.path-frontpage #views-element-container {
   display: none;
+}
+
+.front-page #loading-data .lottiefile {
+  width: 60%;
+  margin: 0 auto;
 }
 
 .path-home .homepage {
@@ -97,14 +105,8 @@ body {
 
 /* Style to detailed page - Node */
 
-.page-node-type-spotify #block-dc-content {
+.page-node-type-spotify #loading-data {
   max-width: 640px; /* image max size */
-  margin: 0 auto;
-}
-
-.path-artists #block-dc-content,
-.path-songs #block-dc-content {
-  max-width: 1170px;
   margin: 0 auto;
 }
 
@@ -112,6 +114,12 @@ body {
 .spotify-full-content div,
 .details__spotify__image img {
   width: 100%;
+}
+
+.main__spotify__card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .details__spotify__image img,
@@ -188,16 +196,21 @@ body {
   box-shadow: 0.1rem 0 0.5rem var(--ligh-shadow);
 }
 
-#block-dc-page-title {
+ #loading-data {
   text-align: center;
 }
 
-.path-artists #block-dc-page-title,
-.path-songs #block-dc-page-title,
+.path-artists  #loading-data,
+.path-songs  #loading-data,
 .page-node-type-spotify #block-dc-breadcrumbs,
 .path-home .carousel .control-dots,
 .path-home .carousel-status {
   display: none;
+}
+
+.page-node-type-spotify .spotify-full-content .node__back {
+  text-align: start;
+  padding-top: 4rem;
 }
 
 .node__back {
@@ -245,6 +258,7 @@ body {
   flex-wrap: wrap;
   gap: 1rem;
   cursor: pointer;
+  justify-content: center;
 }
 
 .spotify__card__song {

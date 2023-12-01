@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { getAccessToken, getTopHitsPlaylistId, getTopTracksWithGenres } from './controller';
+import Lottie from "lottie-react";
+import lottieLoading from "../../../assets/Animation - 1701449656833.json";
 
 const fetchSpotifyData = async () => {
   const accessToken = await getAccessToken();
@@ -9,7 +11,6 @@ const fetchSpotifyData = async () => {
 
   return tracksData;
 };
-
 
 const SpotifyDataComponent = () => {
   const { data, isLoading } = useQuery('spotifyData', fetchSpotifyData, {
@@ -87,17 +88,21 @@ const SpotifyDataComponent = () => {
     }
   };
 
-  // if (isLoading && !data && currentPath === '/') {
-  //   return <p>Getting data from Spotify API...</p>;
-  // }
-
   return (
     <>
       {currentPath === '/' ? (
-        <p>Getting data from Spotify API...</p>
+        <>
+          <p>Build the database before redirecting</p>
+          <Lottie
+            className='lottiefile'
+            animationData={lottieLoading}
+            loop={true}
+          />
+        </>
       ) : null}
-   </>
+    </>
   );
+
 };
 
 export default SpotifyDataComponent;

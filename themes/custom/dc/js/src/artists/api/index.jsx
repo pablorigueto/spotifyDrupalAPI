@@ -138,49 +138,50 @@ const SpotifyCarousel = () => {
           </select>
         </label>
       </div>
+      <div className='main__spotify__card'>
+        {artistsData.map((artist, index) => (
+          <div key={index} className='details__spotify__card'>
+            <div className='details__spotify__image'>
+              <img src={artist.images[0].url} alt={`Artist name ${artist.name}`} />
+            </div>
+            <h2>{artist.name}</h2>
+            <div className='details__spotify'>
 
-      {artistsData.map((artist, index) => (
-        <div key={index} className='details__spotify__card'>
-          <div className='details__spotify__image'>
-            <img src={artist.images[0].url} alt={`Artist name ${artist.name}`} />
+              <div className='spotify__card__details artist_link'>
+                <div className='info'>
+                  <a href={artist.external_urls.spotify} target='__blank'>Spotify Artist</a>
+                </div>
+              </div>
+
+              <div className='spotify__card__details'>
+                <div className='title'>
+                  <p>Genre: </p>
+                </div>
+                <div className='info'>
+                  {artist.genres[0]}
+                </div>
+              </div>
+
+              <div className='spotify__card__details'>
+                <div className='title'>
+                  <p>Followers: </p>
+                </div>
+                <div className='info'>
+                  {artist.followers.total}
+                </div>
+              </div>
+              <div className='spotify__card__details'>
+                <div className='info'>
+                  <p>Popularity: </p>
+                </div>
+                <div className='info'>
+                  {artist.popularity}
+                </div>
+              </div>
+            </div>
           </div>
-          <h2>{artist.name}</h2>
-          <div className='details__spotify'>
-
-            <div className='spotify__card__details artist_link'>
-              <div className='info'>
-                <a href={artist.external_urls.spotify} target='__blank'>Spotify Artist</a>
-              </div>
-            </div>
-
-            <div className='spotify__card__details'>
-              <div className='title'>
-                <p>Genre: </p>
-              </div>
-              <div className='info'>
-                {artist.genres[0]}
-              </div>
-            </div>
-
-            <div className='spotify__card__details'>
-              <div className='title'>
-                <p>Followers: </p>
-              </div>
-              <div className='info'>
-                {artist.followers.total}
-              </div>
-            </div>
-            <div className='spotify__card__details'>
-              <div className='info'>
-                <p>Popularity: </p>
-              </div>
-              <div className='info'>
-                {artist.popularity}
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </>
   );
 };
