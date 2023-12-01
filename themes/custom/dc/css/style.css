@@ -149,7 +149,7 @@ body {
 
 .details__spotify__card {
   margin-bottom: 1rem;
-  width: 220px;
+  width: 14rem;
 }
 
 .spotify__card__details {
@@ -189,6 +189,7 @@ body {
 }
 
 .path-artists #block-dc-page-title,
+.path-songs #block-dc-page-title,
 .page-node-type-spotify #block-dc-breadcrumbs,
 .path-home .carousel .control-dots,
 .path-home .carousel-status {
@@ -212,4 +213,68 @@ body {
 .node__back a:hover {
   transform: scale(1.01);
   transition: transform ease 0.5s;
+}
+
+.relative__div {
+  position: relative;
+}
+
+.artist__image {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 5rem;
+  padding-bottom: 4px;
+}
+
+.song__teaser {
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  width: 14rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 0.1rem 0 0.5rem var(--ligh-shadow);
+  border-radius: 0.3rem;
+}
+
+.song__image {
+  width: 100%;
+}
+
+.song__card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 1170px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.spotify__card__song {
+  margin-bottom: 0.5rem;
+  height: 45px;
+  align-content: center;
+}
+
+.song__more {
+  text-align: center;
+  display: block;
+  height: 20px;
+  background: var(--dark-color);
+  transition: all ease 0.3s;
+}
+
+.song__more a {
+  text-decoration: unset;
+  color: var(--white-color);
+  transition: all ease 0.3s;
+}
+
+.song__more:hover {
+  font-weight: 600;
+  transition: all ease 0.3s;
+}
+
+.song__teaser h2 {
+  margin-top: unset;
 }

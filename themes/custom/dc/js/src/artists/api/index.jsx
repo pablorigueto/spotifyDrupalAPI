@@ -161,8 +161,6 @@ const SpotifyCarousel = () => {
             </div>
           </div>
         </div>
- 
- 
       ))}
     </>
   );
