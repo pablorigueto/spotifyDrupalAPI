@@ -27,13 +27,13 @@ const SpotifySongs = () => {
         {data.map((track, index) => (
           <div key={index} className='song__teaser'>
 
-            <h2>{track.track_name}</h2>
-
             <div className='relative__div'>
               <img className='song__image' alt={`album__image ${index + 1}`} src={track.track_album_image_url} />
  
               <img className='artist__image' alt={`artist__image ${index + 1}`} src={track.artist_image} />
             </div>
+
+            <h2>{track.track_name}</h2>
 
             <div className='spotify__card__details spotify__card__song song__more'>
               <a href={`/node/${track.node_id}`}>

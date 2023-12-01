@@ -232,7 +232,7 @@ body {
   margin: 0 auto;
   margin-bottom: 1rem;
   width: 14rem;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
   box-shadow: 0.1rem 0 0.5rem var(--ligh-shadow);
   border-radius: 0.3rem;
 }
@@ -275,6 +275,17 @@ body {
   transition: all ease 0.3s;
 }
 
-.song__teaser h2 {
+.song__teaser h2, .details__spotify__card h2 {
   margin-top: unset;
+}
+
+.artist_link {
+  display: block;
+  text-align: center;
+  background: var(--dark-color);
+}
+
+.artist_link a {
+  text-decoration: unset;
+  color: var(--white-color);
 }

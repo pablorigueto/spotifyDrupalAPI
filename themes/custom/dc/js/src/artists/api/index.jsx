@@ -131,8 +131,13 @@ const SpotifyCarousel = () => {
             <img src={artist.images[0].url} alt={`Artist name ${artist.name}`} />
           </div>
           <h2>{artist.name}</h2>
-
           <div className='details__spotify'>
+
+            <div className='spotify__card__details artist_link'>
+              <div className='info'>
+                <a href={artist.external_urls.spotify} target='__blank'>Spotify Artist Link</a>
+              </div>
+            </div>
 
             <div className='spotify__card__details'>
               <div className='title'>
