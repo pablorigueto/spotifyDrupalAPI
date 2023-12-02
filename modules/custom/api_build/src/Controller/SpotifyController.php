@@ -66,7 +66,11 @@ class SpotifyController extends ControllerBase {
    * @param \GuzzleHttp\ClientInterface $httpClient
    *   The Guzzle HTTP client service.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, LoggerInterface $logger, ClientInterface $httpClient) {
+  public function __construct(
+    EntityTypeManagerInterface $entity_type_manager,
+    LoggerInterface $logger,
+    ClientInterface $httpClient
+  ) {
     $this->entityTypeManager = $entity_type_manager;
     $this->logger = $logger;
     $this->httpClient = $httpClient;
@@ -117,7 +121,8 @@ class SpotifyController extends ControllerBase {
         ],
       ]);
 
-      // In the future (with PHP 8.3) this json_decode should be changed by json_validate which is more faster.
+      // In the future (with PHP 8.3) this json_decode should be changed
+      // by json_validate which is more faster.
       $data = json_decode($response->getBody()->getContents(), TRUE);
 
       return new JsonResponse(['access_token' => $data['access_token']]);

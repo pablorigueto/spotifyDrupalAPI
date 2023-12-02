@@ -34,7 +34,7 @@ class SpotifyDataController extends ControllerBase {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
+  public static function create(ContainerInterface $container): self {
     return new static(
       $container->get('entity_type.manager')
     );
@@ -49,7 +49,7 @@ class SpotifyDataController extends ControllerBase {
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   A JSON response indicating the success or failure of the operation.
    */
-  public function submitSpotifyData(Request $request) {
+  public function submitSpotifyData(Request $request): JsonResponse {
     try {
       // Count existing nodes of type 'spotify'.
       $query = $this->entityTypeManager->getStorage('node')->getQuery()
@@ -57,7 +57,8 @@ class SpotifyDataController extends ControllerBase {
         ->accessCheck(FALSE);
       $count = $query->count()->execute();
 
-      // Check if the count is less than 20.
+      // Check if the count is less than 50.
+      // Here can create an routine to update the data or drop all and readd.
       if ($count >= 50) {
         return new JsonResponse(['error' => 'Cannot save more than 50 Spotify nodes.'], 400);
       }
