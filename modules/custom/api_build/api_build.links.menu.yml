@@ -1,0 +1,9 @@
+api_build.settings:
+  title: 'Spotify Settings'
+  route_name: api_build.key_settings_form
+  description: 'Configure Spotify Integration settings'
+  parent: system.admin_config
+  weight: 20
+  menu_name: admin
+  route_parameters:
+    permission: 'administer site configuration'
