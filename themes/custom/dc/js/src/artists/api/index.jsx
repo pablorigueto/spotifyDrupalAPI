@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useSpotifyData from '../../getNodes';
-import { getAccessToken, getArtistDetails } from './controller';
+import { fetchArtists } from './controller';
 
 const SpotifyCarousel = () => {
   const { data: tracks, isLoading, error: tracksError } = useSpotifyData();
@@ -16,61 +16,12 @@ const SpotifyCarousel = () => {
   useEffect(() => {
     let isMounted = true;
 
-    const fetchArtists = async () => {
-      try {
-        if (!tracks || tracks.length === 0) {
-          return;
-        }
-
-        const accessToken = await getAccessToken();
-
-        const artistsPromises = tracks.map((track) => {
-          return getArtistDetails(accessToken, track.track_artist_id);
-        });
-
-        const artistsData = await Promise.all(artistsPromises);
-
-        // Create a temporary object to store unique IDs.
-        const uniqueIds = {};
-
-        // Use Array.filter() to filter out duplicates based on the 'id' property.
-        const uniqueArtistsData = artistsData.filter(artist => {
-          // If the ID is not in the temporary object, add it and keep the artist.
-          if (!uniqueIds[artist.id]) {
-            uniqueIds[artist.id] = true;
-            return true;
-          }
-          // If the ID is already in the temporary object, skip the artist
-          return false;
-        });
-
-        // Sorting artistsData by artist name
-        uniqueArtistsData.sort((a, b) => {
-          const compareValue = a.name.localeCompare(b.name);
-          return sortOrder === 'asc' ? compareValue : -compareValue;
-        });
-
-        // Filtering artistsData
-        const filteredArtistsData = uniqueArtistsData.filter((artist) => {
-          const nameMatch = artist.name.toLowerCase().includes(filter.name.toLowerCase());
-          const genreMatch = artist.genres.some((genre) => genre.toLowerCase().includes(filter.genre.toLowerCase()));
-          const popularityMatch = artist.popularity >= filter.popularity; // Updated this line
-
-          return nameMatch && genreMatch && popularityMatch;
-        });
-
-        if (isMounted) {
-          setArtistsData(filteredArtistsData);
-        }
-      } catch (error) {
-        if (isMounted) {
-          setError(error.message || 'An error occurred while fetching artist data');
-        }
-      }
+    const fetchData = async () => {
+      fetchArtists(tracks, sortOrder, filter, setArtistsData, setError, isMounted);
     };
 
-    fetchArtists();
-
+    fetchData();
+    console.log(fetchData);
     return () => {
       isMounted = false;
     };
@@ -126,8 +77,8 @@ const SpotifyCarousel = () => {
         </label>
         <label>
           Filter by Popularity:
-          <select value={filter.popularity} onChange={(e) => handlePopularityChange(e.target.value)}>
-            {[80, 85, 90, 95].map((value) => (
+          <select className='filter__popularity' value={filter.popularity} onChange={(e) => handlePopularityChange(e.target.value)}>
+            {[50, 60, 70, 80, 85, 90, 95].map((value) => (
               <option key={value} value={value}>
                 {value}
               </option>
@@ -135,7 +86,7 @@ const SpotifyCarousel = () => {
           </select>
         </label>
       </div>
-      
+
       <div className='main__spotify__card'>
         {artistsData.map((artist, index) => (
           <div key={index} className='details__spotify__card'>

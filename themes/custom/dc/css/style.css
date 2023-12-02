@@ -120,12 +120,22 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 1rem;
 }
 
 .details__spotify__image img,
 .relative__div img {
-  height: 200px;
   object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.path-artists .details__spotify__image img,
+.relative__div .song__image {
+  height: 13rem;
+}
+
+.relative__div .artist__image {
+  height: 5rem;
 }
 
 .page-node-type-spotify .info {
@@ -145,7 +155,7 @@ body {
 .details__spotify__card,
 .song__teaser {
   box-shadow: 0.1rem 0 0.5rem var(--ligh-shadow);
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   padding: 1rem;
   cursor: pointer;
   transition: transform ease 0.2s;
@@ -174,7 +184,7 @@ body {
   align-items: center;
   grid-gap: 2rem;
   box-shadow: 0.1rem 0 0.5rem var(--ligh-shadow);
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   padding: 0.5rem;
   cursor: pointer;
   margin-bottom: 1rem;
@@ -186,6 +196,23 @@ body {
   padding-bottom: 3rem;
   gap: 1rem;
   padding-top: 1rem;
+}
+
+.filters input,
+.filters select {
+  margin-left: 0.3rem;
+}
+
+.filters input {
+  height: 24px;
+}
+
+.filters select {
+  height: 30px;
+}
+
+.filter__popularity {
+  width: 40px;
 }
 
 .page-node-type-spotify .spotify__info {
