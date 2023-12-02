@@ -80,3 +80,38 @@ export const getArtistDetails = async (accessToken, artistId) => {
     throw error;
   }
 };
+
+export const sendSpotifyDataToDrupal = async (spotifyData) => {
+  try {
+    const baseUrl = window.location.origin;
+    const sendDataEndpoint = `${baseUrl}/submit-spotify-data`;
+    const response = await fetch(sendDataEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data: spotifyData }),
+    });
+
+    if (response.ok) {
+      console.log('Spotify data sent successfully');
+      // Reload the page on success to avoid more complexity with Cron and etc.
+      window.location.href = 'home';
+    } else {
+      // Help to debug.
+      const errorResponse = await response.json();
+      if (errorResponse && errorResponse.error) {
+        // Check for a specific error message
+        if (errorResponse.error === 'Cannot save more than 50 Spotify nodes.') {
+          window.location.href = 'home';
+        } else {
+          console.error('Unexpected error:', errorResponse.error);
+        }
+      } else {
+        console.error('Unexpected error format:', errorResponse);
+      }
+    }
+  } catch (error) {
+    console.error('Error sending Spotify data:', error.message);
+  }
+};
