@@ -11,6 +11,14 @@ function dc_preprocess_page(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_node() for page title templates.
+ */
+function dc_preprocess_node(&$variables) {
+  var_dump('$variables');
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+}
+
+/**
  * Implements hook_preprocess_HOOK() for HTML document templates.
  *
  * Adds body classes if certain regions have content.

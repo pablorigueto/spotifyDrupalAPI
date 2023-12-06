@@ -5,6 +5,9 @@ const fetchSpotifyData = async () => {
   try {
     const baseUrl = window.location.origin;
     const response = await axios.get(`${baseUrl}/api/getSpotifyNode`);
+
+    console.log(response.data);
+
     return response.data;
   } catch (error) {
     console.error('Error fetching Spotify data:', error);

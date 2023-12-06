@@ -15,6 +15,7 @@ const fetchSpotifyData = async () => {
 const SpotifyDataComponent = () => {
   const { data, isLoading } = useQuery('spotifyData', fetchSpotifyData, {
     retry: 5,
+    retryDelay: 1000,
   });
 
   const currentPath = window.location.pathname;
