@@ -7,7 +7,7 @@
 /sites/*/*services*.yml
 
 # Ignore paths that may contain user-generated content
-web/sites/*/files
+#web/sites/*/files
 web/sites/*/public
 web/sites/*/private
 web/sites/*/files-public
@@ -81,7 +81,4 @@ node_modules
 .ht.router.php
 INSTALL.txt
 modules/contrib/*
-sites/
-
-
-
+!web/sites/*/files/config/sync/

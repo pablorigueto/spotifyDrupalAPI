@@ -1,0 +1,19 @@
+uuid: 652cc804-512d-45a3-ad27-36a297de5c61
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.track_added_at
+    - node.type.spotify
+id: node.spotify.track_added_at
+field_name: track_added_at
+entity_type: node
+bundle: spotify
+label: 'Track added at'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

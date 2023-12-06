@@ -1,0 +1,21 @@
+uuid: d607d011-b50d-4e11-8e30-683cb9f76602
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.track_added_at
+field_name: track_added_at
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

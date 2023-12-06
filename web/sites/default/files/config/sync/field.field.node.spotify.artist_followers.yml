@@ -1,0 +1,19 @@
+uuid: e344eae7-1073-4f40-8d42-e48de02c3515
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.artist_followers
+    - node.type.spotify
+id: node.spotify.artist_followers
+field_name: artist_followers
+entity_type: node
+bundle: spotify
+label: 'Artist Followers'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

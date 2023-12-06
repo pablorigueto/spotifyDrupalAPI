@@ -1,0 +1,19 @@
+uuid: 41d06ea7-6fa6-42b7-b2b1-28acf52a49db
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.artist_image
+    - node.type.spotify
+id: node.spotify.artist_image
+field_name: artist_image
+entity_type: node
+bundle: spotify
+label: 'Artist Image'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

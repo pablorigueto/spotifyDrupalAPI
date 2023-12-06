@@ -1,0 +1,19 @@
+uuid: 3d7282df-ebf3-4866-aed1-d5090b3d06c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.track_popularity
+    - node.type.spotify
+id: node.spotify.track_popularity
+field_name: track_popularity
+entity_type: node
+bundle: spotify
+label: 'Track popularity'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

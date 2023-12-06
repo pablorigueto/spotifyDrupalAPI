@@ -1,0 +1,19 @@
+uuid: 1954ba30-01c9-47b5-8f69-fa750b403bbe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.track_artist_name
+    - node.type.spotify
+id: node.spotify.track_artist_name
+field_name: track_artist_name
+entity_type: node
+bundle: spotify
+label: 'Track artist name'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

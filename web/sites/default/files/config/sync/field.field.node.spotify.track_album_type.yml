@@ -1,0 +1,19 @@
+uuid: c5f5595e-d86f-4d48-a642-0d0cdbe929a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.track_album_type
+    - node.type.spotify
+id: node.spotify.track_album_type
+field_name: track_album_type
+entity_type: node
+bundle: spotify
+label: 'Track album type'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

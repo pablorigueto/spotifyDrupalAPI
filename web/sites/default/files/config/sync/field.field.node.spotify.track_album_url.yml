@@ -1,0 +1,19 @@
+uuid: 76b84d68-fe6f-4c73-a1a4-d662c3ca679c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.track_album_url
+    - node.type.spotify
+id: node.spotify.track_album_url
+field_name: track_album_url
+entity_type: node
+bundle: spotify
+label: 'Track album URL'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

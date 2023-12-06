@@ -1,0 +1,19 @@
+uuid: 4114acb5-7446-48e9-8062-fc15e01e7611
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.track_name
+    - node.type.spotify
+id: node.spotify.track_name
+field_name: track_name
+entity_type: node
+bundle: spotify
+label: 'Track name'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
