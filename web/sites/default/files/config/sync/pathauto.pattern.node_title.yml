@@ -1,0 +1,24 @@
+uuid: b62ff0db-6750-4f3f-b21d-fbf514e6f0c8
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node_title
+label: 'Node Title'
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  d4e6a8a4-039a-4b2c-a362-3ab633ab89d1:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: d4e6a8a4-039a-4b2c-a362-3ab633ab89d1
+    context_mapping:
+      node: node
+    bundles:
+      article: article
+      page: page
+      spotify: spotify
+selection_logic: and
+weight: -5
+relationships: {  }
