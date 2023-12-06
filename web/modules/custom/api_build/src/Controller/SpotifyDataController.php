@@ -84,8 +84,7 @@ class SpotifyDataController extends ControllerBase {
           'artist_followers'  => $trackData['followers'],
           'artist_image'  => $trackData['artist_image'],
           'artist_popularity'  => $trackData['artist_popularity'],
-          'promote' => 0, //Set to 1 to promote to front page.
-
+          'promote' => 1,
         ]);
 
         $node->save();

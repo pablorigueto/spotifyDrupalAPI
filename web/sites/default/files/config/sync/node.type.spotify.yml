@@ -1,0 +1,11 @@
+uuid: cefb64aa-f6a7-4353-8cd0-622e755d0737
+langcode: en
+status: true
+dependencies: {  }
+name: 'Spotify Node'
+type: spotify
+description: 'Storage Spotify top songs'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true
