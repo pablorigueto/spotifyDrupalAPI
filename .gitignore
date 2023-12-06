@@ -81,4 +81,10 @@ node_modules
 .ht.router.php
 INSTALL.txt
 modules/contrib/*
-!web/sites/*/files/config/sync/
+web/sites/default/files/css/
+web/sites/default/files/js/
+web/sites/default/files/php/
+web/sites/default/files/.htaccess
+
+
+
